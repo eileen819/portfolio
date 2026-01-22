@@ -4,11 +4,11 @@ export default function About() {
   return (
     <section
       id="about"
-      className="sm:h-[300] scroll-mt-16 sm:flex sm:justify-between sm:items-center p-6"
+      className="sm:h-[300] scroll-mt-16 sm:flex sm:justify-between sm:items-center"
     >
       <div className="mx-auto border-2 border-gray-500 w-44 h-44 sm:w-64 sm:h-64 rounded-full shrink-0 overflow-hidden mb-4 sm:mr-6">
         <Image
-          src="/avatar.png"
+          src="/images/avatar.png"
           alt="avatar"
           width={350}
           height={350}

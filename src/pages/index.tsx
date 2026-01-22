@@ -1,12 +1,11 @@
 import About from "@/components/About";
+import Skills from "@/components/Skills";
 
 export default function Home() {
   return (
     <div>
       <About />
-      <section id="skills" className="bg-pink-300 h-[300] scroll-mt-16">
-        Skills
-      </section>
+      <Skills />
       <section id="projects" className="bg-yellow-300 h-[300] scroll-mt-16">
         Projects
       </section>
