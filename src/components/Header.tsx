@@ -1,13 +1,19 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 export default function Header() {
   const { theme, setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const router = useRouter();
 
   const handleSectionNav = (id: string) => {
+    if (router.pathname !== "/") {
+      router.push(`/#${id}`);
+      return;
+    }
     const el = document.getElementById(id);
     if (!el) return;
     el.scrollIntoView({ behavior: "smooth", block: "start" });

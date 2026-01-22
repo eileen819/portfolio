@@ -4,7 +4,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="sm:h-[300] scroll-mt-16 sm:flex sm:justify-between sm:items-center"
+      className="sm:h-[300] scroll-mt-16 sm:flex sm:justify-between sm:items-center mt-6"
     >
       <div className="mx-auto border-2 border-gray-500 w-44 h-44 sm:w-64 sm:h-64 rounded-full shrink-0 overflow-hidden mb-4 sm:mr-6">
         <Image

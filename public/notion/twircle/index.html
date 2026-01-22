@@ -1,0 +1,768 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>twircle</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="27bbe832-d053-8025-be86-e649a756d69a" class="page sans"><header><img class="page-cover-image" src="https://capsule-render.vercel.app/api?type=waving&amp;color=0:89CFF0,100:5F9EA0&amp;height=200&amp;section=header" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">🌐</span></div><h1 class="page-title" dir="auto">twircle</h1><p class="page-description" dir="auto"></p><table class="properties"><tbody><tr class="property-row property-row-text"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/description_gray.svg" style="width:14px;height:14px;display:block"/></span>개요</th><td>Firebase 기반 실시간 SNS 서비스</td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/list_gray.svg" style="width:14px;height:14px;display:block"/></span>기술 스택</th><td><span class="selected-value select-value-color-green">Firebase</span><span class="selected-value select-value-color-blue">React</span><span class="selected-value select-value-color-orange">TypeScript</span></td></tr><tr class="property-row property-row-url"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/link_gray.svg" style="width:14px;height:14px;display:block"/></span>Demo</th><td><a href="https://twircle.vercel.app" class="url-value">https://twircle.vercel.app</a></td></tr><tr class="property-row property-row-url"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/link_gray.svg" style="width:14px;height:14px;display:block"/></span>GitHub Repo</th><td><a href="https://github.com/eileen819/twircle" class="url-value">https://github.com/eileen819/twircle</a></td></tr></tbody></table></header><div class="page-body"><div style="display:contents" dir="auto"><h3 id="292be832-d053-80c5-a88c-d62c807ac10f" class=""><strong>🤳 사람들과 당신의 생각을 실시간으로 나누세요.</strong></h3></div><div style="display:contents" dir="ltr"><figure id="292be832-d053-805b-b2fc-e56f3399bdd8" class="image"><a href="https://github.com/eileen819/twircle/blob/main/public/preview.png?raw=true"><img src="https://github.com/eileen819/twircle/blob/main/public/preview.png?raw=true"/></a></figure></div><div style="display:contents" dir="auto"><h1 id="27bbe832-d053-80a7-a897-d7c097eeb120" class="">🔈 프로젝트 소개</h1></div><div style="display:contents" dir="auto"><hr id="27bbe832-d053-80dd-b892-ea48898c9adb"/></div><div style="display:contents" dir="auto"><ul id="292be832-d053-80c5-b514-dbb350d03a00" class="bulleted-list"><li style="list-style-type:disc"><strong>twircle</strong>은 사용자의 일상과 생각을 공유할 수 있는 <strong>트위터 UX를 모티브로 한 실시간 반응형 소셜 네트워크 서비스</strong>입니다.</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-80e1-92ad-c1cc2c669ad9" class="bulleted-list"><li style="list-style-type:disc">사용자는 <strong>글 작성 및 검색, 이미지 업로드, 댓글/대댓글, 좋아요, 팔로우, 실시간 알림 기능</strong>을 통해 <strong>실제 SNS와 유사한 경험</strong>을 할 수 있습니다.</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-809f-bca7-ec863c4d1c67" class="bulleted-list"><li style="list-style-type:disc">특히 <strong>Firebase Firestore 실시간 구독(</strong><code><strong>onSnapshot</strong></code><strong>)을 활용</strong>하여 <strong>타임라인, 댓글, 알림이 즉시 반영</strong>되도록 구현했으며, <strong>Firebase Auth 기반</strong>으로 <strong>로그인/회원가입을 구현</strong>하고, Context API로 인증/팔로우/언어 상태를 전역 관리해 불필요한 리렌더링을 최소화했습니다. 이 외에도 <strong>해시태그 기반 검색을 지원</strong>합니다.</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-8086-8bcc-e129f8c52bf9" class="bulleted-list"><li style="list-style-type:disc">본 프로젝트는 단순 UI 복제를 넘어, 실시간 데이터 흐름과 일관된 상태 관리, UX 최적화를 통해 현대 프론트엔드 개발의 핵심 역량을 종합적으로 구현했습니다.</li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-80bf-870c-c1aca00c6630" class="">
+</p></div><div style="display:contents" dir="auto"><h1 id="27bbe832-d053-806c-a321-eca4632d565e" class="">🏗️ 아키텍처</h1></div><div style="display:contents" dir="auto"><hr id="27bbe832-d053-803f-bd4f-e35d5d9f1e4e"/></div><div style="display:contents" dir="ltr"><figure id="28fbe832-d053-80ca-a066-fc3c99337d23" class="image"><a href="twircle/twricle-arc.png"><img style="width:624px" src="twircle/twricle-arc.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="292be832-d053-802c-981f-c02e2e01154e" class="">
+</p></div><div style="display:contents" dir="auto"><h1 id="27bbe832-d053-80a0-ac5d-e081273bdb65" class="">🔎 주요 기능</h1></div><div style="display:contents" dir="auto"><hr id="27bbe832-d053-801a-b152-ce2fa0c49702"/></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-8063-95a0-ff4b87f62941" class=""><strong>✅ 실시간 데이터를 반영한 타임라인</strong></h3></div><div style="display:contents" dir="auto"><ul id="292be832-d053-80bd-962a-c29aaf0c3920" class="bulleted-list"><li style="list-style-type:disc">Firebase Firestore <code>onSnapshot</code>을 활용해 타임라인, 댓글, 알림이 즉시 반영됩니다.</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-804e-8ec5-d77d79d6d58e" class="bulleted-list"><li style="list-style-type:disc">사용자가 좋아요한 글과 팔로잉한 사용자의 글이 실시간으로 업데이트됩니다.</li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-801a-abee-f3fc8362592a" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-801d-8532-e60a75c49607" class=""><strong>✅ 소셜 계정(OAuth) 간편 로그인</strong></h3></div><div style="display:contents" dir="auto"><ul id="292be832-d053-8004-ba47-f32b97fff6d0" class="bulleted-list"><li style="list-style-type:disc">Firebase Auth의 OAuth Provider(Google, GitHub)를 Promise 기반 인증 흐름으로 안전하게 연결하여, 별도 회원가입 절차 없이 소셜 계정으로 로그인할 수 있습니다.</li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-80a0-a78d-c10051d065f3" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-80b4-8950-d2153901a491" class=""><strong>✅ 해시태그 하이라이팅 (contentEditable 기반) 및 검색</strong></h3></div><div style="display:contents" dir="auto"><ul id="292be832-d053-80b3-8ebc-ebde7c8279c4" class="bulleted-list"><li style="list-style-type:disc"><code>contentEditable</code> 편집 영역에서 입력 중 해시태그(#tag)를 자동 감지해 색상 하이라이트 처리합니다.</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-807f-acdd-f733d8ef06af" class="bulleted-list"><li style="list-style-type:disc">한국어 입력기(IME) 사용 시 IME 입력 확정(<code>compositionend</code>) 타이밍을 감지하여, 입력이 확정된 후에만 파싱 및 하이라이팅이 적용되도록 했습니다.</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-80bb-aaa4-f0e1dd57d8fd" class="bulleted-list"><li style="list-style-type:disc">게시글 내 해시태그를 클릭하면 해당 해시태그 검색 결과를 확인할 수 있습니다.</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-8056-995c-c2f11ad606de" class="bulleted-list"><li style="list-style-type:disc">검색 정확도를 높이기 위해 게시글 텍스트를 토큰화하였으며, Firestore 문서에 keywords 필드에 저장하여 전역 검색이 가능하도록 했습니다.</li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-8073-893e-f90829d16407" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-806b-8f71-f484298532e5" class=""><strong>✅ 팔로우/팔로잉 기능</strong></h3></div><div style="display:contents" dir="auto"><ul id="292be832-d053-8023-92a7-d6a174018560" class="bulleted-list"><li style="list-style-type:disc">사용자 간 팔로우/언팔로우를 통해 맞춤형 피드를 구성할 수 있습니다.</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-800d-8508-da9c3e82eb41" class="bulleted-list"><li style="list-style-type:disc">팔로우 이벤트 발생 시 실시간 알림이 전달됩니다.</li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-8073-af28-e4a5e17c4884" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-8082-9bda-f2e651be6d20" class=""><strong>✅ 댓글 &amp; 대댓글 (트리 구조)</strong></h3></div><div style="display:contents" dir="auto"><ul id="292be832-d053-809e-a187-de0e7ae3d03b" class="bulleted-list"><li style="list-style-type:disc">모든 게시글에 댓글 작성이 가능하며, 각 댓글에 대댓글(계층형 댓글)을 작성할 수 있습니다.</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-8017-8271-d828ceea7761" class="bulleted-list"><li style="list-style-type:disc">댓글과 대댓글은 <code>parentId</code>와 <code>conversationId</code> 기반 트리 구조로 관리되어 대화 흐름을 직관적으로 파악할 수 있습니다.</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-8001-ab2d-c495de206d9a" class="bulleted-list"><li style="list-style-type:disc">삭제된 댓글은 ‘삭제된 댓글입니다’로 대체 렌더링하여 트리 구조와 대화 맥락을 유지했습니다.</li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-8092-baaf-ecc60603cc7a" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-8070-a0ae-dd29e86c1558" class=""><strong>✅ 실시간 알림(Notification)</strong></h3></div><div style="display:contents" dir="auto"><ul id="292be832-d053-8058-81d8-de703ec80d0d" class="bulleted-list"><li style="list-style-type:disc">댓글 작성, 좋아요, 팔로우 이벤트 발생 시 상대방에게 실시간 알림이 전달됩니다.</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-80f1-8f51-d8c04d77b367" class="bulleted-list"><li style="list-style-type:disc">알림 문서는 <code>/users/{uid}/notifications</code>에 저장되며, 읽음 여부를 관리합니다.</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-8021-8a58-c623d30288a4" class="bulleted-list"><li style="list-style-type:disc">알림 확인 시 읽음 처리되며, 해당 게시글 / 댓글 / 프로필 페이지로 즉시 이동할 수 있습니다.</li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-808c-8c28-fc1aa6a41f6f" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-80a9-a544-fe48e6ec3a47" class=""><strong>✅ 다국어 기능 지원</strong></h3></div><div style="display:contents" dir="auto"><ul id="292be832-d053-800c-8086-ff669217f9dd" class="bulleted-list"><li style="list-style-type:disc">글로벌 사용자 경험을 고려한 다국어 지원을 제공합니다.</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-8025-bdc3-f59ffdbfcc3f" class="bulleted-list"><li style="list-style-type:disc"><code>useTranslation</code> 커스텀 훅을 이용해 UI 텍스트를 한국어 / 영어로 전환할 수 있습니다.</li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-80cd-98ea-df980f7218f6" class="">
+</p></div><div style="display:contents" dir="auto"><h1 id="27bbe832-d053-806b-901c-de5e3923ccf9" class="">🗣️ 기술적 의사결정</h1></div><div style="display:contents" dir="auto"><hr id="27bbe832-d053-8097-a916-e6c85f2e7456"/></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-80b1-8c69-ed40bdff4c4e" class="block-color-yellow_background">Frontend Framework &amp; Build</h3></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="292be832-d053-803b-971e-d1f0775ee9b7"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="292be832-d053-8064-8545-e2c2052f4986" class=""><strong>React + Vite</strong></h3></div><div style="display:contents" dir="auto"><p id="292be832-d053-80ef-9fbe-f375e1c5c197" class="">✔️ 컴포넌트 기반 아키텍처로 UI를 모듈화해 재사용성과 유지보수성을 확보</p></div><div style="display:contents" dir="auto"><p id="292be832-d053-8046-aca7-ed7cce666f77" class="">✔️ Vite와 조합하여 CRA 대비 더 빠른 HMR과 빌드 속도로 개발 생산성을 향상시킬 수 있음</p></div><div style="display:contents" dir="auto"><p id="292be832-d053-8045-affd-fc89834575a4" class="">✔️ 훅(Hooks)과 커스텀 훅을 활용해 공통 로직을 모듈화하여 코드의 가독성과 관리 효율 증대</p></div><div style="display:contents" dir="auto"><p id="292be832-d053-8071-9d94-f0ba19f25a72" class="">✔️ context API 등과 조합하여 전역 상태를 간단히 관리 가능</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="292be832-d053-800a-a260-f6dd5477b35d" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-8088-97f8-cf17ae3628b4" class="block-color-yellow_background">Programming Language</h3></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="292be832-d053-8051-844d-f4400aea0738"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="292be832-d053-8089-b93b-cf18aa059352" class="">TypeScript</h3></div><div style="display:contents" dir="auto"><p id="292be832-d053-8044-8122-ff618a6fd40e" class="">✔️ 정적 타입으로 런타임 에러 사전 차단 가능</p></div><div style="display:contents" dir="auto"><p id="292be832-d053-8064-9433-f3cfd01a2c64" class="">✔️ 외부 라이브러리(Firebase SDK 등)의 타입 시그니처 활용으로 안정성 확보</p></div><div style="display:contents" dir="auto"><p id="292be832-d053-8095-a555-e21e720a6d29" class="">✔️ 타입 정의를 통한 IDE 자동완성과 리팩터링 효율 향상</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="292be832-d053-8083-b437-d61e0848fa2a" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-8010-ae87-d05107f11f8a" class="block-color-yellow_background"><strong>Routing &amp; Page Management</strong></h3></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="292be832-d053-8034-8b2e-de824ec4ff87"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="292be832-d053-8049-9440-e9fb13467d50" class="">React Router DOM</h3></div><div style="display:contents" dir="auto"><p id="292be832-d053-8080-8b9c-ecb89833fc7c" class="">✔️ 선언적 라우팅과 중첩 라우트로 일관된 페이지 구조 확보</p></div><div style="display:contents" dir="auto"><p id="292be832-d053-8088-8b3c-ccd0954e5669" class="">✔️ <code>isAuthenticated</code> 상태 기반으로 로그인 여부에 따른 페이지 결정 가능</p></div><div style="display:contents" dir="auto"><p id="292be832-d053-80a9-9460-ef2e1551b025" class="">✔️ 404 등 라우터에 명시하지 않은 예외 경로 처리 가능</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="292be832-d053-80e9-8404-da2bacdbd10b" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-80bf-beb2-dd16c7a1ab6f" class="block-color-yellow_background"><strong>State Management</strong></h3></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="292be832-d053-8029-9742-c9545106f54c"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="292be832-d053-8081-9b98-c43ec521b840" class="">context API</h3></div><div style="display:contents" dir="auto"><p id="292be832-d053-80d4-92ae-c19b6963a1d5" class="">✔️ props drilling 없이 전역적으로 상태 관리 가능</p></div><div style="display:contents" dir="auto"><p id="292be832-d053-803f-a565-cf027992790b" class="">✔️ Firebase Auth에서 가져온 사용자 정보를 전역으로 공유하여 최적화 시킴</p></div><div style="display:contents" dir="auto"><p id="292be832-d053-8095-ad20-f53b2c267ab3" class="">✔️ 프로젝트 확장 시 Redux, Zustand 등과 같은 상태 관리 라이브러리를 사용하는 것이 나을 것 같지만, 현재 프로젝트 규모에서는 context API만으로도 충분하다고 생각하여 최종 결정</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="292be832-d053-8063-9089-c17a4d024d99" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-80d2-a535-ef1f30b077e9" class="block-color-yellow_background"><strong>Database &amp; Auth</strong></h3></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="292be832-d053-80f2-9aa3-e76b17fedf6f"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="292be832-d053-809b-8924-fac42a02e39a" class="">Firebase (Auth / Firestore / Storage)</h3></div><div style="display:contents" dir="auto"><p id="292be832-d053-80f3-a4e6-f3f4bc777c47" class="">✔️ Firebase OAuth로 소셜 계정 기반 로그인 제공 + Firebase Auth로 안정적 세션 관리 가능</p></div><div style="display:contents" dir="auto"><p id="292be832-d053-80db-a2e1-d4a68d6a7c36" class="">✔️ 실시간 리스너(<code>onSnapshot</code>)로 서버의 변경 사항을 즉시 반영하여 실시간 데이터 처리 가능</p></div><div style="display:contents" dir="auto"><p id="292be832-d053-80be-ac95-c25955178d03" class="">✔️ 서버리스 백엔드로 초기 인프라 비용과 운영 부담 최소화</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="292be832-d053-8007-be36-ee3391ec2502" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-804e-9058-efa90d6cde64" class="block-color-yellow_background"><strong>Form &amp; Utility</strong></h3></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="292be832-d053-80fb-a551-e808ba9dcd34"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="292be832-d053-8034-b26e-c7fbc1a019e0" class="">React-Hook-Form</h3></div><div style="display:contents" dir="auto"><p id="292be832-d053-80fb-b7ce-ed2a90173182" class="">✔️ <code>useForm()</code> 을 이용해 폼 상태와 입력 값을 효율적으로 관리</p></div><div style="display:contents" dir="auto"><p id="292be832-d053-8091-838d-f6499f5f8b2c" class="">✔️ 회원가입 시의 이메일, 비밀번호 필드의 유효성 검증과 에러 핸들링을 간단하게 처리 가능</p></div><div style="display:contents" dir="auto"><p id="292be832-d053-807a-9194-d501136fa5b4" class="">✔️ 다중 input 필드를 하나의 폼으로 일관되게 관리 가능</p></div></div></figure></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="292be832-d053-80a4-9932-cce9f2bba89b"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="292be832-d053-8069-96ff-db26b76fde60" class="">uuid</h3></div><div style="display:contents" dir="auto"><p id="292be832-d053-80c1-b67d-df2d8d2ea6f4" class="">✔️ 고유 식별자 생성으로 리스트 키 충돌 방지</p></div><div style="display:contents" dir="auto"><p id="292be832-d053-8086-bbfa-edc67fc6dcc8" class="">✔️ Firebase storage에서 이미지 path 중복 방지로 데이터 충돌을 예방</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="292be832-d053-8002-80a4-f1cd20a76c85" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-80c5-85d7-c8ea6d41c4dc" class="block-color-yellow_background"><strong>UI / Animation</strong></h3></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="292be832-d053-802f-95d5-f02094ee8029"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="292be832-d053-80b2-9f2b-c8fe77abe7ba" class="">SCSS Modules</h3></div><div style="display:contents" dir="auto"><p id="292be832-d053-8071-996e-f1a660848ad8" class="">✔️ 변수 / 믹스인으로 디자인 토큰을 관리하며 일관된 스타일 유지 가능</p></div><div style="display:contents" dir="auto"><p id="292be832-d053-80a3-afd2-c9d7b9a5915e" class="">✔️ <code>module.scss</code>로 스타일을 모듈화하여 유지보수하기 용이</p></div><div style="display:contents" dir="auto"><p id="292be832-d053-803c-baee-da0ecf4022db" class="">✔️ UI 구조에 따른 직관적 문법으로 스타일 적용이 쉽고 편리함</p></div></div></figure></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="292be832-d053-8063-9f6d-dc1f3731d29d"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="292be832-d053-80a0-82e5-dcc922975c62" class="">Framer-Motion</h3></div><div style="display:contents" dir="auto"><p id="292be832-d053-803f-8d2b-dea55207b0bc" class="">✔️ 선언적 애니메이션 API로 코드 가독성 확보 및 유지보수 용이</p></div><div style="display:contents" dir="auto"><p id="292be832-d053-80fb-b53c-f40d4f65425e" class="">✔️ 상태 전환 / 제스처 기반 등 CSS로 구현하기 어려운 애니메이션에 적합</p></div><div style="display:contents" dir="auto"><p id="292be832-d053-80e7-8a6e-db9cd153e65b" class="">✔️ <code>motion</code> 컴포넌트를 활용하여 ‘좋아요’ 버튼의 하트 아이콘 애니메이션 구현에 용이</p></div></div></figure></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="292be832-d053-808e-80ea-dc6aeed3fc4b"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="292be832-d053-80dc-a6e3-e27cc5245e65" class="">react-icons</h3></div><div style="display:contents" dir="auto"><p id="292be832-d053-80b1-a59b-e5307dadb939" class="">✔️ 다양한 아이콘 팩을 단일 API로 통합해 일관된 사용성 확보</p></div><div style="display:contents" dir="auto"><p id="292be832-d053-80dd-a951-faf4c2e32d52" class="">✔️ 필요한 아이콘만 ES 모듈을 import하여 번들 크기 절감</p></div></div></figure></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="292be832-d053-8083-8342-e1656b5d41a4"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="292be832-d053-806a-9d51-ff36a0fbdc10" class="">React Toastify  </h3></div><div style="display:contents" dir="auto"><p id="292be832-d053-80ac-99e1-d008b70258c9" class="">✔️ 비동기 작업의 성공 / 실패 상태를 일관된 토스트 메시지로 피드백 가능 (<code>toast.success</code> / <code>toast.error</code>)</p></div><div style="display:contents" dir="auto"><p id="292be832-d053-80d8-80a0-c898ca42b042" class="">✔️ <code>ToastContainer</code> 컴포넌트를 커스텀하여 프로젝트의 시스템에 맞춤화</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="292be832-d053-80a4-984b-cf03a1d5ee17" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-80f3-9a27-fac4844e8529" class="block-color-yellow_background"><strong>Deployment </strong>&amp; 환경 구성</h3></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="292be832-d053-802b-86bf-e405e8c2e62d"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="292be832-d053-80ec-bf2a-f965d4ad938b" class="">Vercel</h3></div><div style="display:contents" dir="auto"><p id="292be832-d053-80b6-95b9-d2e10d7dbef0" class="">✔️ GitHub 연동으로 CI/CD 자동 배포 가능</p></div><div style="display:contents" dir="auto"><p id="292be832-d053-803a-986d-d427bdbc6943" class="">✔️ Preview / Production 분리로 안전한 릴리스 흐름 구축 가능</p></div><div style="display:contents" dir="auto"><p id="292be832-d053-8076-a114-e83656ed7a8d" class="">✔️ 암호화된 환경변수 관리로 보안 및 확장성 강화</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="292be832-d053-80ea-a407-e92fe5d94096" class="">
+</p></div><div style="display:contents" dir="auto"><h1 id="27bbe832-d053-80b5-ae1e-dcbb0068731f" class="">🛠️ 트러블 슈팅</h1></div><div style="display:contents" dir="auto"><hr id="27bbe832-d053-807a-b46b-e38ce7468f38"/></div><div style="display:contents" dir="auto"><h2 id="292be832-d053-80e3-baf1-c5d9d8f2b781" class="">1. ‘좋아요’ 수의 누락 문제</h2></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-800f-bb68-ef5d0ef4d767" class="">❗ 문제 상황</h3></div><div style="display:contents" dir="auto"><ul id="292be832-d053-80e9-9659-e4ac8a02e773" class="bulleted-list"><li style="list-style-type:disc">여러 사용자가 동시에 하나의 게시글에 ‘좋아요’를 누르거나 취소할 경우, 실제 카운트와 다르게 반영되는 문제가 발생</li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-8016-93b5-cad89cf5131b" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-80c4-92f4-e0ec896d4f35" class="">🔍 원인 분석</h3></div><div style="display:contents" dir="auto"><ul id="292be832-d053-808e-9423-d4194b7e7b53" class="bulleted-list"><li style="list-style-type:disc">기존에는 Firestore의 <code>updateDoc()</code>으로 <code>likes</code> 배열 필드와 <code>likeCount</code> 필드를 클라이언트에서 계산 후 업데이트</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-80a3-9409-f759365a7a36" class="bulleted-list"><li style="list-style-type:disc">하지만 이런 방법은 동시에 여러 요청이 들어오면 값이 꼬여 누락이 발생할 수 있음을 확인</li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-8070-a05b-cf58da16ccf3" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-8038-a065-da59f8f4eee0" class="">🛠 해결 / 대응 방법</h3></div><div style="display:contents" dir="auto"><ul id="292be832-d053-80ee-9fb3-e702d815d301" class="bulleted-list"><li style="list-style-type:disc">Firestore의 <code>runTransaction</code>을 사용하여 요청이 동시에 들어와도 정확하게 <code>likes</code> 배열과 <code>likeCount</code>가 증가 또는 감소하도록 처리</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-8076-83d4-df2ef07050ab" class="bulleted-list"><li style="list-style-type:disc">이로 인해, 동시 다발적 요청에 대하여 항상 일관된 결과를 보장할 수 있게 되었음</li></ul></div><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="292be832-d053-8007-88c9-f3570122fa4f" class="code code-wrap"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">			await runTransaction(db, async (transaction) =&gt; {
+        const postRef = doc(db, postType, post.id);
+        const postSnap = await transaction.get(postRef);
+        if (!postSnap.exists()) throw new Error(&quot;게시글이 없습니다.&quot;);
+
+        const likes = postSnap.data().likes || [];
+
+        if (likes.includes(user.uid)) {
+          transaction.update(postRef, {
+            likes: arrayRemove(user.uid),
+            likeCount: increment(-1),
+          });
+        } else {
+          transaction.update(postRef, {
+            likes: arrayUnion(user.uid),
+            likeCount: increment(1),
+          });
+
+          await createLikesNotification({
+            postId: postType === &quot;posts&quot; ? post.id : (post as IComment).postId,
+            postContent: post.content,
+            postUid: post.uid,
+            user,
+          });
+        }
+      });</code></pre></div><div style="display:contents" dir="auto"><p id="2dbbe832-d053-8011-9594-c5994087c6b2" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-8038-8f3e-c5e8f1145b63" class="">✅ 결과 및 회고</h3></div><div style="display:contents" dir="auto"><ul id="292be832-d053-803b-824b-c67fabe93696" class="bulleted-list"><li style="list-style-type:disc">동시에 발생하는 요청을 트랜잭션으로 제어하며 데이터를 일관되게 유지하는 방법을 배움</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-801f-b3a3-fcdb5fb7f8aa" class="bulleted-list"><li style="list-style-type:disc">단순 CRUD를 넘어서 실시간 서비스에서 생길 수 있는 충돌 상황을 다루며 사용자 경험(UX)을 향상시킨 경험을 쌓음</li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-80e5-9a9b-d1302c154377" class="">
+</p></div><div style="display:contents" dir="auto"><hr id="292be832-d053-808d-a118-cd2973649319"/></div><div style="display:contents" dir="auto"><h2 id="292be832-d053-8008-8976-c7bdb7c457f7" class="">2. 중복된 이메일로 인한 회원가입 오류 발생 </h2></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-8086-8e63-ecc61d60435e" class="">❗ 문제 상황</h3></div><div style="display:contents" dir="auto"><ul id="292be832-d053-8032-a3ec-fc4379af2296" class="bulleted-list"><li style="list-style-type:disc">회원가입 시 이미 동일한 이메일로 가입된 계정이 있으면 <code>account-exists-with-different-credential</code> 또는 <code>auth/email-already-in-use</code> 에러 발생</li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-80ff-ada0-e24d8958854c" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-8066-8db0-f5665e55b707" class="">🔍 원인 분석</h3></div><div style="display:contents" dir="auto"><ul id="292be832-d053-8025-9183-ec3064bd6db6" class="bulleted-list"><li style="list-style-type:disc">동일 이메일 계정에 대한 예외 처리 로직이 구현되어 있지 않아 발생한 문제</li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-8022-a44c-ea03d5d46bf0" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-802c-815f-cb0a12be240c" class="">🛠 해결 / 대응 방법</h3></div><div style="display:contents" dir="auto"><ul id="292be832-d053-80de-9a3c-fa3a9c3094a0" class="bulleted-list"><li style="list-style-type:disc"><code>fetchSignInMethodsForEmail</code>로 기존 provider를 확인해 계정 연결을 시도했으나 정상적으로 동작하지 않음</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-802d-a3f4-ce6eb9fb89aa" class="bulleted-list"><li style="list-style-type:disc">대신, 해당 에러 코드가 발생할 경우 사용자에게 토스트 메시지와 안내 문구를 표시해 상황을 명확히 알림<br/></li></ul></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-8076-82f7-fa543c4023aa" class="">✅ 결과 및 회고</h3></div><div style="display:contents" dir="auto"><ul id="292be832-d053-809a-b009-c83440f69222" class="bulleted-list"><li style="list-style-type:disc">인증 과정에서 발생할 수 있는 다양한 에러에 대한 예외 처리가 필요하다는 점을 체감</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-8066-953e-c5ff0ffc1816" class="bulleted-list"><li style="list-style-type:disc">특히 사용자에게 이해하기 쉬운 피드백을 제공하는 것의 중요함을 깨달음</li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-80cb-8887-ec816ab222eb" class="">
+</p></div><div style="display:contents" dir="auto"><hr id="292be832-d053-80d8-a724-ce1290150636"/></div><div style="display:contents" dir="auto"><h2 id="292be832-d053-80dd-8d19-eba744679081" class="">3. contentEditable 속성을 가진 div 요소의 텍스트 처리 방식</h2></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-80ae-9ea2-d72a1462ab92" class="">❗ 문제 상황</h3></div><div style="display:contents" dir="auto"><ul id="292be832-d053-80a9-8a7e-ff5e3c642f9f" class="bulleted-list"><li style="list-style-type:disc">글 작성 시 해시태그를 하이라이팅하고자 했으나, <code>textarea</code> 요소로는 스타일 적용이 불가능해 <code>contentEditable</code> 속성을 가진 <code>div</code> 요소를 사용함</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-8022-bd49-ce4dd1efdf8a" class="bulleted-list"><li style="list-style-type:disc">실시간으로 작성되는 글을 정규표현식으로 감지해서 해시태그가 포함된 단어를 하이라이팅하는 <code>highlightHashtags</code> 함수를 구현했지만, 한글 입력 시 정상적으로 동작하지 않음<br/></li></ul></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-8070-ab94-cb89d4b19646" class="">🔍 원인 분석</h3></div><div style="display:contents" dir="auto"><ul id="292be832-d053-80f8-85eb-d2aed3b7915b" class="bulleted-list"><li style="list-style-type:disc">영어 입력은 <code>onInput</code> 이벤트를 이용하여 하이라이팅 적용이 가능했음</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-804a-96a4-eadca3095bb8" class="bulleted-list"><li style="list-style-type:disc">그러나 한글 입력은 글자가 조합되는 과정에서 <code>composition</code> 이벤트가 발생해 즉시 반영되지 않는다는 것을 확인함</li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-8081-9937-eac0061ee4cd" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-80d2-ad47-f99ea0acd4fe" class="">🛠 해결 / 대응 방법</h3></div><div style="display:contents" dir="auto"><ul id="292be832-d053-800c-806e-fa9b4ba252bd" class="bulleted-list"><li style="list-style-type:disc"><code>onCompositionStart</code>와 <code>onCompositionEnd</code> 속성을 활용해 한글 입력 조합 상태를 인지</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-803a-9ced-d07085e7435e" class="bulleted-list"><li style="list-style-type:disc">조합 종료 시 입력된 텍스트를 <code>highlightHashtags</code> 함수로 처리해 해시태그가 포함된 단어가 하이라이팅되도록 구현함</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-8018-b773-ee5960962fba" class="bulleted-list"><li style="list-style-type:disc"><code>composition</code> 이벤트의 발생과 종료를 <code>state</code>로 관리하여 이벤트 흐름을 제어함</li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-80fe-98d0-ca61ac89bc5b" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-8014-a9bd-d8126b4b2a1c" class="">✅ 결과 및 회고</h3></div><div style="display:contents" dir="auto"><ul id="292be832-d053-8013-afc0-ff52856c8ab4" class="bulleted-list"><li style="list-style-type:disc">실시간 텍스트 입력 중 특정 단어를 하이라이팅하는 로직을 구현하며, 한글 IME 특성을 고려한 입력 처리 방식을 학습</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-805c-ba11-db481d77c583" class="bulleted-list"><li style="list-style-type:disc"><code>div</code> 요소를 활용한 커스텀 텍스트 에디터 구현 경험을 쌓음</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-803b-b294-d5ffd11d0bfd" class="bulleted-list"><li style="list-style-type:disc">다만 이미 작성된 글을 수정할 때 커서 위치가 어긋나는 문제가 있어, 추후 보정 로직을 추가할 예정</li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-8028-a81c-e42e319729ff" class="">
+</p></div><div style="display:contents" dir="auto"><hr id="292be832-d053-80c0-9fae-fcfd5a6998e6"/></div><div style="display:contents" dir="auto"><h2 id="292be832-d053-8070-ba10-ec5b81c3369b" class="">4. 트리형 구조 댓글에서 댓글 삭제 시 발생하는 문제</h2></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-8069-9453-f9b5cf801052" class="">❗ 문제 상황</h3></div><div style="display:contents" dir="auto"><ul id="292be832-d053-8012-9859-efd91d03578f" class="bulleted-list"><li style="list-style-type:disc">댓글 / 대댓글 영역을 트리형 구조로 구현</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-80d6-b6db-d34e7769065c" class="bulleted-list"><li style="list-style-type:disc">댓글이나 대댓글을 바로 삭제할 경우 대화의 흐름이 끊기고, 트리 구조가 무너지는 문제가 발생</li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-8095-b3a6-d63c41dce72b" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-8069-9344-dc716ed43061" class="">🔍 원인 분석</h3></div><div style="display:contents" dir="auto"><ul id="292be832-d053-803d-af10-d07ae2c9b993" class="bulleted-list"><li style="list-style-type:disc">부모 댓글이 삭제되면 하위 대댓글은 존재하지만 화면에 표시되지 않음</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-8000-8d02-dc3d603c309c" class="bulleted-list"><li style="list-style-type:disc">이는 <code>CommentTree</code> 컴포넌트가 부모 댓글을 기준으로 재귀 렌더링하기 때문에 발생</li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-805a-9278-ee2d16ca8fc8" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-80a1-80de-d10a34b7a040" class="">🛠 해결 / 대응 방법</h3></div><div style="display:contents" dir="auto"><ul id="292be832-d053-80fd-9bc0-e686ce3acf91" class="bulleted-list"><li style="list-style-type:disc"><strong>soft delete 방식 적용</strong>: 문서를 실제로 삭제하지 않고 <code>{ content: &quot;삭제된 댓글입니다.&quot;, isDeleted: true, deletedAt: 삭제 시각 }</code>으로 업데이트</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-80f6-bbbd-d6e81dd89170" class="bulleted-list"><li style="list-style-type:disc">렌더링 시 <code>isDeleted === true</code> 조건이면 “삭제된 댓글입니다” 메시지를 표시해 트리 구조를 유지</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-80b6-986b-cadbc28b0c5a" class="bulleted-list"><li style="list-style-type:disc">장기적으로는 30일이 지난 soft delete 문서를 Cloud Functions 스케줄링 등을 활용해 실제 삭제 처리할 수 있도록 계획</li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-8099-8f10-edbb4da20c31" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-8078-9f54-d3a8904b5d14" class="">✅ 결과 및 회고</h3></div><div style="display:contents" dir="auto"><ul id="292be832-d053-8039-872b-ec83dd22711c" class="bulleted-list"><li style="list-style-type:disc">트리형 댓글 구조에서 데이터 삭제를 어떻게 설계할 지 고민해볼 수 있는 경험이 됨</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-80cb-b2aa-c00cdf311706" class="bulleted-list"><li style="list-style-type:disc">soft delete 방식으로 대화 흐름은 유지했지만, 실제 데이터가 계속 쌓여 Firestore 저장 비용이 증가할 수 있음. 따라서 일정 기간 이후 문서를 자동 삭제하는 추가 로직이 필요함을 확인</li></ul></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
