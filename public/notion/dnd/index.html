@@ -1,0 +1,733 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>dnd To-Do List</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="27bbe832-d053-8097-84f3-c5780390f3a1" class="page sans"><header><img class="page-cover-image" src="https://capsule-render.vercel.app/api?type=waving&amp;color=0:8E9EFC,100:7AA1F2&amp;height=200&amp;section=header" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">📋</span></div><h1 class="page-title" dir="auto">dnd To-Do List</h1><p class="page-description" dir="auto"></p><table class="properties"><tbody><tr class="property-row property-row-text"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/description_gray.svg" style="width:14px;height:14px;display:block"/></span>개요</th><td>일정 관리를 위한 Kanban 스타일 보드 앱</td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/list_gray.svg" style="width:14px;height:14px;display:block"/></span>기술 스택</th><td><span class="selected-value select-value-color-default">@hello-pangea/dnd</span><span class="selected-value select-value-color-blue">React</span><span class="selected-value select-value-color-gray">Recoil</span><span class="selected-value select-value-color-orange">TypeScript</span></td></tr><tr class="property-row property-row-url"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/link_gray.svg" style="width:14px;height:14px;display:block"/></span>Demo</th><td><a href="https://eileen819.github.io/dnd-todo/" class="url-value">https://eileen819.github.io/dnd-todo/</a></td></tr><tr class="property-row property-row-url"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/link_gray.svg" style="width:14px;height:14px;display:block"/></span>GitHub Repo</th><td><a href="https://github.com/eileen819/dnd-todo" class="url-value">https://github.com/eileen819/dnd-todo</a></td></tr></tbody></table></header><div class="page-body"><div style="display:contents" dir="auto"><h2 id="28fbe832-d053-8083-89cd-f25137358f35" class="">📌 Drag &amp; Drop으로 관리하는 To-Do List</h2></div><div style="display:contents" dir="ltr"><figure id="28ebe832-d053-80e5-af2a-e7c54cb5a1ef" class="image"><a href="https://github.com/eileen819/dnd-todo/blob/main/public/preview.png?raw=true"><img src="https://github.com/eileen819/dnd-todo/blob/main/public/preview.png?raw=true"/></a></figure></div><div style="display:contents" dir="auto"><h1 id="27bbe832-d053-80d6-a9d5-e1099c37d542" class="">🔈 프로젝트 소개</h1></div><div style="display:contents" dir="auto"><hr id="27bbe832-d053-8006-9c37-d34fe5afefb7"/></div><div style="display:contents" dir="auto"><ul id="27bbe832-d053-8062-ad36-e4bba52aab90" class="bulleted-list"><li style="list-style-type:disc">To-Do Board는 기존 리스트 기반 할 일 관리 방식의 한계를 개선하기 위해 설계된 <strong>Drag &amp; Drop 기반 보드형 업무 관리 웹 애플리케이션</strong>입니다.</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-80cf-abd4-cc4f503e8c3f" class="bulleted-list"><li style="list-style-type:disc">사용자는 마치 실제 보드처럼 <strong>직관적으로 업무를 이동하고 우선순위를 조정</strong>할 수 있으며, 이를 통해 <strong>관리 효율성과 가시성</strong>을 동시에 확보할 수 있습니다.</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-80ba-98a7-de18246abdc4" class="bulleted-list"><li style="list-style-type:disc">본 프로젝트는 @hello-pangea/dnd 라이브러리 학습 목적으로 시작되었으나, 단순 예제를 넘어 <strong>새로운 보드 생성, 항목 간 이동, 할 일 수정 및 삭제, 반응형 UI 등 실제 사용자 경험(UX)과 유지보수를 고려</strong>하여 확장 / 구현하였습니다.</li></ul></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-80e8-a1ea-ee641e69df2d" class="">
+</p></div><div style="display:contents" dir="auto"><h1 id="27bbe832-d053-8017-bac9-f592186d91e2" class="">🏗️ 아키텍처</h1></div><div style="display:contents" dir="auto"><hr id="27bbe832-d053-8009-87e6-d76587754b1f"/></div><div style="display:contents" dir="ltr"><figure id="28ebe832-d053-8062-a9c1-e3343ba59c64" class="image"><a href="dnd%20To-Do%20List/dnd-arc.png"><img style="width:528px" src="dnd%20To-Do%20List/dnd-arc.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-805a-8bbc-da922075f71b" class="">
+</p></div><div style="display:contents" dir="auto"><h1 id="27bbe832-d053-808f-bcd7-c35d5af194c9" class="">🔎 주요 기능</h1></div><div style="display:contents" dir="auto"><hr id="27bbe832-d053-80d4-a6e2-d4f5ec28244e"/></div><div style="display:contents" dir="auto"><h3 id="27bbe832-d053-8020-a64f-fa61d2889e00" class="">✅ Drag &amp; Drop 기반 직관적 관리</h3></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-80d1-918e-cc1dad50cd03" class="bulleted-list"><li style="list-style-type:disc"><code>@hello-pangea/dnd</code>라이브러리를 활용하여 카테고리 및 To-Do 항목을 자유롭게 이동시킬 수 있음</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-8012-9a19-c15605631fe7" class="bulleted-list"><li style="list-style-type:disc">보드 내 / 보드 간 이동을 지원하여 사용자의 업무 우선순위에 따라 직관적으로 재배치할 수 있음<br/></li></ul></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-8053-bf8e-d4afba90d5e6" class="">✅ 제한 없는 보드 추가</h3></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-8045-bf2f-c7a7a042c295" class="bulleted-list"><li style="list-style-type:disc">사용자가 필요한 만큼 새로운 보드 생성 가능</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-803b-9f80-e7aeb0c8c1a7" class="bulleted-list"><li style="list-style-type:disc">각 보드는 독립적인 To-Do 리스트를 가질 수 있으며, 프로젝트 · 개인 업무 등 다양한 목적에 맞게 분류 가능<br/></li></ul></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-808e-ab6a-ddcb6ba9ed7f" class="">✅ 간편한 수정 &amp; 삭제</h3></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-8053-a761-d782a6f41ed3" class="bulleted-list"><li style="list-style-type:disc">모달 UI를 통한 보드 이름 및 To-Do 항목 수정 지원</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-80ac-99ea-c260bb099449" class="bulleted-list"><li style="list-style-type:disc">보드 삭제 시 해당 보드 내 모든 항목 자동 제거</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-804e-842f-d1e98cf37600" class="bulleted-list"><li style="list-style-type:disc">보드 또는 To-Do 항목을 휴지통 영역으로 드래그하여 직관적으로 삭제 가능<br/></li></ul></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-8004-b1a7-dbfac72d33bd" class="">✅ 데이터 영속성 보장</h3></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-80c0-9315-d8e56814ae82" class="bulleted-list"><li style="list-style-type:disc"><code>localStorage</code> 활용하여 새로고침이나 브라우저 종료 후에도 데이터 유지</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-80f2-9787-d560a18b5fe5" class="bulleted-list"><li style="list-style-type:disc">별도의 서버 없이도 안정적인 사용자 경험 제공<br/></li></ul></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-801d-a4ea-d9a100856e0a" class="">✅ 반응형 UI 제공</h3></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-8032-9744-ce1bcb2d5760" class="bulleted-list"><li style="list-style-type:disc">모바일 · 태블릿 · 데스크톱 등 다양한 환경에서 일관된 사용성 제공</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-8054-a600-e89f6bc8aab2" class="bulleted-list"><li style="list-style-type:disc"><code>styled-components</code>의 <code>ThemeProvider</code>를 활용해 미디어 쿼리 기반 반응형 레이아웃 적용</li></ul></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-8054-b279-fe3addfc2dfb" class="">
+</p></div><div style="display:contents" dir="auto"><h1 id="27bbe832-d053-80f3-b0b6-cbfdcc00aae9" class="">🗣️ 기술적 의사결정</h1></div><div style="display:contents" dir="auto"><hr id="27bbe832-d053-8025-94a5-cca06b94b5f8"/></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-802c-bc09-cf69dace4841" class="block-color-yellow_background">Frontend Framework &amp; Library</h3></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="28fbe832-d053-8042-a1ce-c9b1b604fbda"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-8025-bd0d-cbb820c15075" class="">React</h3></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-8058-b70c-f0b29cb5d52e" class="">✔️ 프론트엔드 실무에서 가장 널리 쓰이는 라이브러리로 프론트엔드 학습 및 확장에 유리</p></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-80ed-9e4d-d126b5feb31d" class="">✔️ React의 컴포넌트 기반 아키텍처를 활용하여 UI를 <code>BoardArea</code>, <code>CardArea</code>, <code>CreateBoard</code> 등 독립적인 컴포넌트로 분리할 수 있음</p></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-80ec-b203-cc7278837b3a" class="">✔️ 재사용 가능한 컴포넌트 단위 개발은 복잡한 Drag &amp; Drop 로직과 UI렌더링을 분리하여 코드의 재사용성과 유지보수성을 크게 향상시킬 수 있음</p></div></div></figure></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="28fbe832-d053-80ff-89c5-cbe5084fa8f3"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-801c-b617-c6d39940f2a2" class="">React-Hook-Form</h3></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-80d9-9c5a-c9a7c84e2ffe" class="">✔️ <code>useForm()</code>을 활용하여 입력 폼 상태 관리와 유효성 검증 로직을 간결하고 효율적으로 구현</p></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-809d-806c-c96969981d22" class="">✔️ <code>handleSubmit</code>으로 데이터 제출 시 유효성 여부를 검증하여, 중복된 보드가 생성되지 않도록 사용자 경험(UX)을 향상시킬 수 있음</p></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-80a8-9fcb-cdc949473d93" class="">✔️ 컴포넌트를 분리해도 상태 일관성이 유지되어, 재사용성과 유지보수성을 크게 향상시킬 수 있음</p></div></div></figure></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="28fbe832-d053-8036-8417-ca9918f84868"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-804b-abe3-ddaef6d9409a" class="">@hello-pangea/dnd </h3></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-808c-99d9-e66802b25309" class="">✔️ <code>react-beautiful-dnd</code>와 비교 검토 후, 활발한 유지보수와 React 최신 버전과의 호환성을 고려하여 <code>@hello-pangea/dnd</code>를 최종 선택</p></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-80ad-8b7b-f9ac3e0af568" class="">✔️ <code>onDragEnd</code>기반 이벤트 관리가 직관적이며, <code>React.memo()</code>와 함께 사용시 불필요한 DOM 업데이트를 최소화해 성능 최적화와 UX 강화에 유리</p></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-8067-815b-f23ba1cd4402" class="">✔️ <code>Droppable</code>, <code>Draggable</code> 컴포넌트를 활용하여 Drag &amp; Drop UI 패턴을 안정적으로 적용하기에 적합</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-8045-86d2-db48a9451647" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-8068-a083-e52a83ee538b" class="block-color-yellow_background">Programming Language</h3></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="28fbe832-d053-80fd-9f19-fd33e57dad54"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-800f-b848-f6c9ce14ecb5" class="">TypeScript</h3></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-802c-be27-e0ce752ac7b5" class="">✔️ 컴파일 단계에서 에러를 사전에 발견하여, 런타임 오류를 효과적으로 예방하고 코드의 안정성을 높일 수 있음</p></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-80d7-bfe8-dac89a2b470d" class="">✔️ 명확한 타입 정의를 통해 코드의 가독성과 유지 보수성을 크게 향상시킴</p></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-803d-b1bb-e04db1cb4e18" class="">✔️ 코드 변경 시 타입 오류를 빠르게 발견해 개발 생산성을 높일 수 있음</p></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-8081-a4ef-e40bb9e2cf98" class="">✔️ 특히 Drag &amp; Drop 기능 중심의 프로젝트 특성상, Board와 To-Do 상태를 타입으로 관리하여 잘못된 상태 변경을 방지하고 안정적인 데이터 흐름을 구현하기에 적합</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-8042-9c28-d3808785edcc" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-8099-9f51-eaec50f2f884" class="block-color-yellow_background">State Management</h3></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="28fbe832-d053-808b-acc8-ca88ca6a331f"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-80af-8066-e3d34426fe62" class="">Recoil</h3></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-8089-87b5-f17fad0cc05c" class="">✔️ 전역 상태를 간단하고 직관적으로 관리할 수 있으며, <code>atom</code> 단위로 상태를 분리하여 복잡성을 줄이고 유지보수성을 향상시킬 수 있음</p></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-8070-9f93-d441b88cdff8" class="">✔️ Board와 To-Do 데이터를 각각 atom으로 관리하여 상태 구조가 명확히 하고, Board 및 To-Do 항목의 재배열 로직을 안정적으로 처리할 수 있음</p></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-8077-96ad-da23c690bc06" class="">✔️ <code>effects</code>를 활용하여 상태 변화 시 동작과 초기값을 정의하고, <code>localStorage</code>와 연동해 새로고침 이후에도 데이터가 유지되도록 안정적인 사용자 경험(UX)을 제공</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-80d3-be6b-ec6da5dd0190" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-8079-a1ad-fb682388cf0a" class="block-color-yellow_background">Database</h3></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="28fbe832-d053-8073-81fe-db5a3d639f90"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-80ba-8519-f30ca427e191" class="">LocalStorage</h3></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-80cc-b070-c14030162aba" class="">✔️ 브라우저에서 제공하는 간단한 데이터 저장 방식으로, 별도의 백엔드 서버 없이도 빠르고 간단하게 데이터 유지 가능</p></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-8074-8a84-d90170aac3b2" class="">✔️ Recoil의 <code>effects</code>와 함께 사용하여 상태 변화와 동시에 데이터 저장 및 복원 로직을 구현 </p></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-80e2-8b6c-c8fbe276590d" class="">✔️ 추후 데이터의 규모가 커질 경우 Firebase나 별도의 백엔드 서버 연동이 필요함을 확인</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-805c-b70f-cb9f8afdfc09" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-80a1-8500-dc315ee8ed1b" class="block-color-yellow_background">Styling</h3></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="28fbe832-d053-809d-8892-cca6a810f8ca"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-80cf-9b57-e3af93700b6a" class="">Styled-Components</h3></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-8048-8338-c72e16af3fce" class="">✔️ CSS-in-JS 방식으로 컴포넌트 단위의 스타일 관리가 가능하여 스타일의 재사용성과 유지보수성을 향상시킬 수 있음</p></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-807e-97b0-f431aa6e2efa" class="">✔️ props를 전달하여 Drag &amp; Drop 시에 동적인 스타일링 구현이 가능</p></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-8023-9a6a-f90f3457a893" class="">✔️ <code>ThemeProvider</code>를 활용하여 전역 스타일과 반응형 UI를 효율적으로 관리하고, 재사용성이 높은 디자인 시스템을 구현함</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-80d7-b5d9-e7c3f2c6321f" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-806c-94ea-fb3d7dd5ece2" class="block-color-yellow_background">Deployment</h3></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="28fbe832-d053-8018-933f-d9ac98b38028"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-807b-8b82-c9751898ebf1" class="">GitHub Pages</h3></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-80b1-a1aa-daf30d4d2050" class="">✔️ 무료로 이용이 가능하며, GitHub 계정만 있으면 별도의 복잡한 설정 없이 빠르게 정적 웹 사이트를 배포할 수 있음</p></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-8073-889c-c8679466c58f" class="">✔️ <code>gh-pages</code> 패키지를 활용하여 정적 파일을 빌드해 GitHub Pages에 배포하도록 구성</p></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-80ae-bb56-deef9c06ba48" class="">✔️ 향후 배포 자동화 환경을 고려해, GitHub Actions와의 연동 용이성을 확인</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-8042-ba2d-c472e5266299" class="">
+</p></div><div style="display:contents" dir="auto"><h1 id="27bbe832-d053-8023-ad81-e69abc92027a" class="">🛠️ 트러블 슈팅</h1></div><div style="display:contents" dir="auto"><hr id="27bbe832-d053-80af-8e45-fb4c90397890"/></div><div style="display:contents" dir="auto"><h2 id="28fbe832-d053-807a-976d-ed9504149d4d" class="">1. 드래그 시 리렌더링 과다</h2></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-8055-ac06-e7389b8e1cae" class="">❗ 문제 상황</h3></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-8085-aebc-dcac46c79a37" class="bulleted-list"><li style="list-style-type:disc"><code>DraggableCard</code>를 빠르게 Drag &amp; Drop 하면 드래그 하지 않은 카드까지 깜빡이거나 흔들리는 것 처럼 보임</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-806a-af9d-ca45112c00ee" class="bulleted-list"><li style="list-style-type:disc">카드 이동이 매끄럽지 않아 Drag &amp; Drop 사용자 경험(UX)이 저하됨</li></ul></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-80a4-9778-fd82b78a7ed5" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-80e8-ad76-f0a0bf742486" class="">🔍 원인 분석</h3></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-8033-84f1-de06d4e4228f" class="bulleted-list"><li style="list-style-type:disc">Drag 이벤트로 인해 To-Do / Board 상태가 변경될 때, 상위 컴포넌트가 전체 리렌더링되면서 props의 참조가 변경됨 → 모든 카드가 리렌더링 후보가 됨</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-8067-a943-e223eff8d7dd" class="bulleted-list"><li style="list-style-type:disc">실제로 변경된 카드는 일부 뿐인데, 구조상 변경이 없는 카드도 불필요하게 리렌더링 되는 비효율적인 구조가 원인</li></ul></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-8030-b0c2-f04b08ce0d2d" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-800b-9fa0-f6e9ca73ddd7" class="">🛠 해결 / 대응 방법</h3></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-8062-b2ed-f8ab37604662" class="bulleted-list"><li style="list-style-type:disc"><strong>React의 Memoization 기법</strong>을 활용하여 불필요한 리렌더링을 최소화함<div style="display:contents" dir="auto"><ul id="28fbe832-d053-8042-bab1-f2d012cfeedd" class="bulleted-list"><li style="list-style-type:circle"><code>React.memo()</code>는 컴포넌트의 props를 이전 렌더링 시점의 props와 비교하여 props의 변경이 없는 경우 리렌더링을 일으키지 않음</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-80e9-8e3f-ec0f5c2966ac" class="bulleted-list"><li style="list-style-type:circle">Drag &amp; Drop 동작이 부모 컴포넌트의 상태는 변경시켰지만, 드래그되지 않은 카드들의 props는 이전과 비교했을 때 변경되지 않음</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-8084-80db-d26a5a82014c" class="bulleted-list"><li style="list-style-type:circle"><code>React.memo()</code> 는 props가 변하지 않았음을 감지하여 카드 컴포넌트의 불필요한 리렌더링을 건너뜀</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-80b4-b7c1-f0c169c0833f" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-803a-b436-f5e236f0b98b" class="">✅ 결과 및 회고</h3></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-80ad-9195-fbddeeb2b6b4" class="bulleted-list"><li style="list-style-type:disc">UI 흔들림 및 깜빡임 현상이 사라지고, Drag &amp; Drop 사용자 경험(UX)이 부드럽게 동작하도록 개선됨</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-8020-bd7d-dba84502a950" class="bulleted-list"><li style="list-style-type:disc"><code>console.log()</code>를 활용해 확인했을 때, 드래그 중 카드 리렌더링 횟수가 현저히 감소함</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-8025-9c68-e0e7ccf376ac" class="bulleted-list"><li style="list-style-type:disc">이 경험을 통해 컴포넌트 단위의 최적화가 전체 어플리케이션의 성능과 UX에 얼마나 큰 영향을 미치는지 체감하였으며, 불필요한 리렌더링을 줄이는 것이 프론트엔드 성능 최적화의 핵심임을 학습함</li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-80f1-8229-cadc512e7dfa" class="">
+</p></div><div style="display:contents" dir="auto"><hr id="292be832-d053-80d3-9555-f11de4b4f1b0"/></div><div style="display:contents" dir="auto"><h2 id="28fbe832-d053-807e-b15f-d8046b689773" class="">2. Drag를 이용한 보드 / To-Do 항목 삭제</h2></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-806a-87b6-e2f22705e778" class="">❗ 문제 상황</h3></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-8024-b73d-fcd05db88c43" class="bulleted-list"><li style="list-style-type:disc">보드 또는 To-Do 카드를 드래그하여 휴지통 아이콘에 드롭하면 삭제되는 기능을 구현하려 하였으나, <code>Droppable</code>의 <code>type</code> 제약으로 인해 서로 다른 <code>type</code>을 가진 아이템은 휴지통 영역에 드롭되지 않음<br/></li></ul></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-80ab-a340-c9eaa61f4a7b" class="">🔍 원인 분석</h3></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-8016-b327-cb25e3be355b" class="bulleted-list"><li style="list-style-type:disc"><code>@hello-pangea/dnd</code>에서 아이템이 다른 <code>Droppable</code>로 이동하려면 <code>droppableId</code> 혹은 <code>type</code>이 일치해야 함</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-800c-9314-ea1f8295b805" class="bulleted-list"><li style="list-style-type:disc">휴지통 아이콘을 <code>Droppable</code> 컴포넌트로 만들고 <code>type</code>을 정의했으나, 보드(<code>type=board</code>)와 To-Do 카드(<code>type=card</code>)는 서로 다른 <code>type</code>을 가지고 있어 휴지통 <code>Droppable</code> 컴포넌트가 두 타입을 동시에 받을 수 없어 드롭이 불가능했음</li></ul></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-8006-85e3-d8e1366637a7" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-807d-9c84-f2dd64c0ace0" class="">🛠 해결 / 대응 방법</h3></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-8077-b775-dae78d22a3c7" class="bulleted-list"><li style="list-style-type:disc"><code>type</code> 속성의 제약을 우회하기 위해 <strong>두 개의 </strong><code><strong>Droppable</strong></code><strong>을 같은 자리에 겹쳐 배치하는 구조적 접근을 시도</strong><div style="display:contents" dir="auto"><ul id="28fbe832-d053-803f-b3b9-f027833b41e5" class="bulleted-list"><li style="list-style-type:circle">외부: <code>type=&quot;board&quot;</code> Droppable</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-80d7-a8ef-c4aba03a5161" class="bulleted-list"><li style="list-style-type:circle">내부: <code>type=&quot;card&quot;</code> Droppable</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-803a-9d2d-c59388534380" class="bulleted-list"><li style="list-style-type:circle">두 Droppable 컴포넌트의 스타일을 동일하게 적용하여 사용자에게는 하나의 휴지통으로 보이게 함</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-8073-b074-ca84db2e2658" class="bulleted-list"><li style="list-style-type:disc">드래그 중인 아이템의 <code>type</code>에 따라 해당하는 <code>Droppable</code> 컴포넌트가 활성화되어 정상적인 드롭이 가능해짐</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-80bf-8525-db80fad8c7bb" class="bulleted-list"><li style="list-style-type:disc">이후 <code>onDragEnd</code> 콜백에서 해당 아이템 삭제 로직을 안전하게 실행할 수 있게 됨</li></ul></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-8049-9c35-e9b25b595b9e" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-8086-bd2d-d6ea38aff15b" class="">✅ 결과 및 회고</h3></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-8047-b128-d33a1d513883" class="bulleted-list"><li style="list-style-type:disc"><code>@hello-pangea/dnd</code>의 Droppable 구조와 <code>type</code> 제약에 대해 명확히 이해할 수 있었음</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-8090-a620-ddab88e4ba1a" class="bulleted-list"><li style="list-style-type:disc">Drag &amp; Drop을 아이템의 단순 이동뿐만 아니라, 삭제 같은 액션 트리거에도 응용할 수 있음을 확인</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-808c-86b6-fb8a29c647c2" class="bulleted-list"><li style="list-style-type:disc">실무에서도 공용 Droppable 설계 시 <code>type</code><strong> </strong>충돌 문제를 어떻게 우회할지 고려해야 함을 경험적으로 학습</li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-80f3-b8cf-fb167ee9cf31" class="">
+</p></div><div style="display:contents" dir="auto"><hr id="292be832-d053-8010-821d-c9ce3f2fc955"/></div><div style="display:contents" dir="auto"><h2 id="28fbe832-d053-80d8-87c2-ce9db46877c0" class="">3. 중복된 보드 이름으로 인한 수정 및 삭제 오류</h2></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-8008-a926-f065082b955e" class="">❗ 문제 상황</h3></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-805b-bb1e-c2b9edfbbf4e" class="bulleted-list"><li style="list-style-type:disc"> 동일한 이름을 가진 보드가 존재할 경우, 해당 보드의 수정 및 삭제 기능이 정상적으로 동작하지 않는 문제를 발견</li></ul></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-80bb-8af8-eb00abfcb200" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-80f3-8066-fcb92ea35dcf" class="">🔍 원인 분석</h3></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-8005-9bf0-c8ecd69b6ec5" class="bulleted-list"><li style="list-style-type:disc">보드를 생성할 때 이름 문자열 자체를 식별자로 사용했기 때문에, 중복된 이름이 존재하면 특정 보드를 고유하게 구분할 수 없었음</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-80e9-9c63-df3b669666e2" class="bulleted-list"><li style="list-style-type:disc">이로 인해 보드 이름을 수정하거나 삭제하려고 하면 기존의 참조를 잃고 올바른 보드를 찾지 못해 에러가 발생</li></ul></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-8094-9b9c-e245108736a8" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-807a-adf3-e8cbac72ddc5" class="">🛠 해결 / 대응 방법</h3></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-80f0-891a-e6c3851ac36f" class="bulleted-list"><li style="list-style-type:disc">보드 생성 및 이름 변경 시 유효성 검증 로직을 추가하여 중복된 이름으로 보드가 생성되는 것을 방지</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-80b7-b73a-f8d7ed5d4750" class="bulleted-list"><li style="list-style-type:disc"><code>boards.includes(boardName.trim())</code>을 통해 기존 보드 상태에 동일한 이름이 있는지 검사</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-80c4-b90a-dd800a7d84c8" class="bulleted-list"><li style="list-style-type:disc">중복된 보드 이름이 있다면 <code>alert()</code>으로 사용자에게 즉각적인 에러 메시지를 제공하고 보드 생성이나 수정이 차단되도록 구현함</li></ul></div><div style="display:contents" dir="auto"><hr id="28fbe832-d053-80d2-b6ec-e8130879183d"/></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-80d0-9d25-c6a77d8467f0" class="">※ 이번 프로젝트에서는 간단히 유효성 검증으로 처리했지만, 실무에서는 고유 id를 식별자로 사용하고 이름은 단순 속성으로 관리하는 패턴이 더 안정적임</p></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-8083-940e-e052f7656719" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-804d-b4c7-d6831cc4f26c" class="">✅ 결과 및 회고</h3></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-80bb-8d8e-debd1a56adb4" class="bulleted-list"><li style="list-style-type:disc">유효성 검증을 통해 중복된 이름 생성으로 인한 오류를 예방하고, 보드의 수정 및 삭제 동작이 안정적으로 동작하도록 개선함</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-8012-80b6-dcc60416b5fc" class="bulleted-list"><li style="list-style-type:disc">단순한 기능 구현을 넘어, 데이터 모델링에서 고유 키(Unique Key)의 필요성과 중요성을 깊이 이해하는 계기가 됨</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-8073-b427-c32b42d1fe2a" class="bulleted-list"><li style="list-style-type:disc">사용자에게 즉각적인 피드백을 제공함으로써 서비스 안정성과 사용자 경험(UX)을 동시에 개선하는 방법을 학습함</li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-8069-a7b9-ef1c9e89a38a" class="">
+</p></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

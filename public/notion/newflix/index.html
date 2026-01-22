@@ -1,0 +1,767 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Newflix</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="27bbe832-d053-8036-9044-e2e8bbc1338f" class="page sans"><header><img class="page-cover-image" src="https://capsule-render.vercel.app/api?type=waving&amp;color=0:000000,100:D32F2F&amp;height=200&amp;section=header" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">🎬</span></div><h1 class="page-title" dir="auto">Newflix</h1><p class="page-description" dir="auto"></p><table class="properties"><tbody><tr class="property-row property-row-text"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/description_gray.svg" style="width:14px;height:14px;display:block"/></span>개요</th><td>TMDB API 기반 영화/TV 정보 서비스</td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/list_gray.svg" style="width:14px;height:14px;display:block"/></span>기술 스택</th><td><span class="selected-value select-value-color-blue">React</span><span class="selected-value select-value-color-gray">TMDB API</span><span class="selected-value select-value-color-orange">TypeScript</span></td></tr><tr class="property-row property-row-url"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/link_gray.svg" style="width:14px;height:14px;display:block"/></span>Demo</th><td><a href="https://newflix-eileen.vercel.app/" class="url-value">https://newflix-eileen.vercel.app/</a></td></tr><tr class="property-row property-row-url"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/link_gray.svg" style="width:14px;height:14px;display:block"/></span>GitHub Repo</th><td><a href="https://github.com/eileen819/newflix" class="url-value">https://github.com/eileen819/newflix</a></td></tr></tbody></table></header><div class="page-body"><div style="display:contents" dir="auto"><h2 id="292be832-d053-8030-933e-fecc112f0425" class="">🎬 넷플릭스 스타일로 영화 · TV시리즈를 검색해보세요!</h2></div><div style="display:contents" dir="ltr"><figure id="28ebe832-d053-800f-84db-e6d47bbb6fd8" class="image"><a href="https://raw.githubusercontent.com/eileen819/newflix/refs/heads/main/public/preview.png"><img src="https://raw.githubusercontent.com/eileen819/newflix/refs/heads/main/public/preview.png"/></a></figure></div><div style="display:contents" dir="auto"><h1 id="27bbe832-d053-80a8-be0d-ca40e5a9b931" class="">🔈 프로젝트 소개</h1></div><div style="display:contents" dir="auto"><hr id="27bbe832-d053-80c4-9c7f-c7e63efc0305"/></div><div style="display:contents" dir="auto"><ul id="28ebe832-d053-808f-9586-fbb5e40531fb" class="bulleted-list"><li style="list-style-type:disc"><strong>NEWFLIX</strong>는 <strong>TMDB API를 활용</strong>하여 <strong>최신 영화와 TV쇼 정보를 실시간으로 제공</strong>하는 미디어 플랫폼입니다.</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-806e-8a95-ce854458c2bd" class="bulleted-list"><li style="list-style-type:disc">Netflix UI/UX를 재해석한 웹 어플리케이션으로, <strong>TanStack Query를 통한 캐싱 전략, 반응형 UI, 애니메이션 전환</strong> 등 최신 프론트엔드 실무 기술을 종합적으로 적용하여 최적의 사용자 경험을 제공하는 데 중점을 두었습니다.</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-807d-8d80-dad6b083b9f0" class="bulleted-list"><li style="list-style-type:disc">특히 <strong>Vercel Functions 기반 서버리스 API 래핑을 통한 보안 강화</strong>, <strong>Framer Motion을 활용한 자연스러운 모달 전환 애니메이션</strong>, <strong>Swiper 기반 캐러셀 UI</strong> 등 다양한 기술을 통합하여 실제 서비스 수준의 인터랙션과 성능을 구현했습니다.</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-8042-adf6-c528a9b45003" class="bulleted-list"><li style="list-style-type:disc">본 프로젝트는 단순 학습을 넘어, 데이터 페칭 최적화·UX 개선·UI 애니메이션 설계와 같은 실무 핵심 과제를 직접 해결하며 프론트엔드 개발 역량을 검증했습니다.</li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-808a-afaa-d36efa3fdc7f" class="">
+</p></div><div style="display:contents" dir="auto"><h1 id="27bbe832-d053-808e-b94f-e07027e75e74" class="">🏗️ 아키텍처</h1></div><div style="display:contents" dir="auto"><hr id="27bbe832-d053-8064-9f1f-e817a97206bf"/></div><div style="display:contents" dir="ltr"><figure id="28fbe832-d053-8022-b083-fbb356688291" class="image"><a href="Newflix/newflix-arc.png"><img style="width:624px" src="Newflix/newflix-arc.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="292be832-d053-8096-9d69-cac45a2b63ba" class="">
+</p></div><div style="display:contents" dir="auto"><h1 id="27bbe832-d053-80fc-808d-d545199db916" class="">🔎 주요 기능</h1></div><div style="display:contents" dir="auto"><hr id="27bbe832-d053-803f-966d-e18ea7fcedf9"/></div><div style="display:contents" dir="auto"><h3 id="27bbe832-d053-80a0-8b8e-f00fd0cfb916" class="">✅ 최신 영화 및 TV쇼 정보 제공</h3></div><div style="display:contents" dir="auto"><ul id="292be832-d053-80e9-9c28-f6f675ef95e3" class="bulleted-list"><li style="list-style-type:disc">TMDB API 연동을 통해 최신 영화/TV쇼 데이터를 실시간 제공</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-8041-bd6f-f7923c0593ac" class="bulleted-list"><li style="list-style-type:disc"><code>TanStack Query</code>의 데이터 캐싱 및 요청 최적화로 API 호출 횟수 최소화 &amp; 빠른 UX 보장</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-808a-a764-db1be8ce0e58" class="bulleted-list"><li style="list-style-type:disc"><code>Swiper</code> 기반 캐러셀 슬라이더를 적용하여 Netflix-style UI 구현</li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-80ad-8a32-c7e4ae2cba8a" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-80e9-a72a-d843a6df1168" class="">✅ 검색 기능 제공</h3></div><div style="display:contents" dir="auto"><ul id="292be832-d053-802c-a606-c6fe93f9f36c" class="bulleted-list"><li style="list-style-type:disc">영화 및 TV쇼 통합 검색 기능 제공</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-80b3-8032-fbb6d4f34141" class="bulleted-list"><li style="list-style-type:disc"><code>React-Hook-Form</code>으로 검색 폼 상태 관리 및 데이터 유효성 검증</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-8042-9b31-c84798f300c7" class="bulleted-list"><li style="list-style-type:disc">검색 폼 제출 기반 설계로 불필요한 API 호출 방지</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-809e-858a-e4a9df00c2b7" class="bulleted-list"><li style="list-style-type:disc"><code>Axios</code> + <code>TanStack Query</code>로 검색 결과 캐싱 및 로딩 상태를 관리</li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-8021-b773-f9c8de28d0e6" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-802c-985a-c9f2d5cc49cb" class="">✅ 상세 정보 모달 제공</h3></div><div style="display:contents" dir="auto"><ul id="292be832-d053-803a-a814-f04fd976e327" class="bulleted-list"><li style="list-style-type:disc">선택한 콘텐츠의 줄거리, 장르, 평점 등의 상세 정보 제공</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-804e-ac4a-fb66df09b1de" class="bulleted-list"><li style="list-style-type:disc"><code>Framer Motion</code>의 <code>layoutId</code>로 부드럽고 직관적인 모달 전환 애니메이션 구현</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-80c1-8fbe-cd571405b70b" class="bulleted-list"><li style="list-style-type:disc"><code>React-Youtube</code>로 트레일러 자동 재생 지원, 트레일러 부재 시 공식 이미지로 대체하여 Fallback UX 강화<br/></li></ul></div><div style="display:contents" dir="auto"><h1 id="27bbe832-d053-8080-bb63-c93c4732ceae" class="">🗣️ 기술적 의사결정</h1></div><div style="display:contents" dir="auto"><hr id="27bbe832-d053-8064-bced-f1d2da32e419"/></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-8081-b84e-cd29ad231766" class="block-color-yellow_background">Frontend Framework &amp; Library</h3></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="292be832-d053-8054-a818-c385c5e40485"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="292be832-d053-807b-80a9-e282ba6ea956" class="">React + Vite</h3></div><div style="display:contents" dir="auto"><p id="292be832-d053-803e-88cf-c291969294e5" class="">✔️ 컴포넌트 기반 설계로 슬라이더·모달 등 반복되는 UI를 재사용하여 유지보수성과 확장성 확보</p></div><div style="display:contents" dir="auto"><p id="292be832-d053-8073-a76b-dd61b43b52c3" class="">✔️ Vite + React조합을 통해 CRA 대비 더 빠른 HMR과 빌드 속도로 생산성 향상</p></div><div style="display:contents" dir="auto"><p id="292be832-d053-8005-96d8-ec0021654974" class="">✔️ Virtual DOM 및 선언적 렌더링 패턴을 활용해 대규모 상태 변화가 발생하는 캐러셀·모달 UI도 성능 저하 없이 제어 가능</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="292be832-d053-80a8-b948-f0e283f21fcb" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-80fa-8b4d-f8dbff314949" class="block-color-yellow_background">Programming Language</h3></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="292be832-d053-80d5-bacd-f5c2d2036b24"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="292be832-d053-80f5-806f-cfb08ab2e4de" class="">TypeScript</h3></div><div style="display:contents" dir="auto"><p id="292be832-d053-8042-98c7-cf79c55366d0" class="">✔️ 컴파일 단계에서 타입 오류를 조기 감지해 런타임 에러를 사전에 방지</p></div><div style="display:contents" dir="auto"><p id="292be832-d053-80ae-8f1d-c07535ebf240" class="">✔️ 컴포넌트 Props에 타입을 지정하여 재사용성과 유지보수성을 강화 → 협업 환경에서도 안정적 확장 가능</p></div><div style="display:contents" dir="auto"><p id="292be832-d053-8027-b51f-c0fdab36d29e" class="">✔️ TMDB API 응답 구조를 타입으로 정의해 데이터 일관성과 안정성 확보</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="292be832-d053-8034-8c62-e07b2b5b015d" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-806e-93a4-fa9787aa9766" class="block-color-yellow_background"><strong>Routing &amp; Page Management</strong></h3></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="292be832-d053-802b-9b19-f09f6530e520"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="292be832-d053-8048-92c2-fb4c383c6247" class="">React Router DOM</h3></div><div style="display:contents" dir="auto"><p id="292be832-d053-80c3-99e6-ea8093ae4ee1" class="">✔️ 상세 정보 모달 상태를 <code>useSearchParams</code>로 URL과 동기화함 → 쿼리 변경을 통한 모달 라우팅을 구현하기에 적합</p></div><div style="display:contents" dir="auto"><p id="292be832-d053-809c-b899-d32a8da32b07" class="">✔️ 페이지 이동 없이 URL 변경만으로 모달 열림/닫힘 상태 유지 구현 가능</p></div><div style="display:contents" dir="auto"><p id="292be832-d053-80d1-b111-efe8e2b7d711" class="">✔️ <code>useNavigate</code>를 활용해 자연스럽고 직관적인 화면 전환 제공</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="292be832-d053-8071-894b-eaf9fc37efe7" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-8025-95f3-f7a8ca596293" class="block-color-yellow_background">State Management &amp; Data</h3></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="292be832-d053-80b0-9078-e863f3ca7fc9"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="292be832-d053-80be-a1ae-fd73594e8f0e" class="">TanStack Query</h3></div><div style="display:contents" dir="auto"><p id="292be832-d053-8064-9bd0-e7a1bea4bfe0" class="">✔️ TMDB API와의 비동기 데이터 요청을 캐싱하고 쿼리키 기반으로 체계적으로 관리 가능</p></div><div style="display:contents" dir="auto"><p id="292be832-d053-80a4-a21a-cfe4f6fcdb90" class="">✔️ 로딩 및 에러 상태를 관리하기에 용이</p></div><div style="display:contents" dir="auto"><p id="292be832-d053-80aa-892d-c3506009e296" class="">✔️ 동일 요청 자동 캐싱 / 중복 제거로 네트워크 비용 절감 및 성능 최적화 → 빠른 UX 보장</p></div></div></figure></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="292be832-d053-8081-a219-c76259fa006f"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="292be832-d053-805e-b0f9-da7c5d284709" class="">Axios</h3></div><div style="display:contents" dir="auto"><p id="292be832-d053-80d6-95ad-c4b4d5f14843" class="">✔️ 인스턴스를 사용해 <code>baseURL</code>, <code>headers</code>등 반복되는 설정을 중앙 관리 → 요청 로직 단순화 가능</p></div><div style="display:contents" dir="auto"><p id="292be832-d053-8086-b73a-e85ede33b9e1" class="">✔️ 코드 분리를 통해 깔끔하고 재사용성 가능한 코드를 만들기에 적합하며 유지 보수에 용이</p></div><div style="display:contents" dir="auto"><p id="292be832-d053-80ce-bbfa-f2c408257ca0" class="">✔️ TanStack Query와 결합해 API 호출을 효율적이고 일관된 패턴으로 관리 가능</p></div></div></figure></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="292be832-d053-8041-9dee-dcad2f43a0c7"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="292be832-d053-8011-8f01-c0b8fbac51a5" class="">React-Hook-Form</h3></div><div style="display:contents" dir="auto"><p id="292be832-d053-808e-ac96-fa7113d1e358" class="">✔️ <code>useForm()</code> 을 이용해 폼 상태와 입력 값을 효율적으로 관리할 수 있음</p></div><div style="display:contents" dir="auto"><p id="292be832-d053-80b0-b5db-d49500cc2881" class="">✔️ 폼 데이터의 유효성 검증 및 에러 핸들링을 쉽고 간단하게 처리 가능</p></div><div style="display:contents" dir="auto"><p id="292be832-d053-80a8-ab6a-de91d2a00b15" class="">✔️ <code>handleSubmit</code>을 활용하여, 유효한 데이터 제출 시 URL 라우팅 가능</p></div><div style="display:contents" dir="auto"><p id="292be832-d053-800c-9214-cc52bd3e4809" class="">✔️ JavaScript에서 제공하는 <code>fetch</code> 함수와 비교 검토 후, TanStack Query + Axios의 조합이 캐싱, 쿼리 관리, 로딩 상태, 에러 핸들링 등의 측면에서 우수하다고 생각하여 최종 선택</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="292be832-d053-805a-9f14-e9872df376bc" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-8065-9984-fa9e18fef863" class="block-color-yellow_background"><strong>UI Interaction &amp;</strong> Styling</h3></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="292be832-d053-8020-8a67-d30afa1a9d95"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="292be832-d053-809c-bd66-f559840ef704" class="">Swiper</h3></div><div style="display:contents" dir="auto"><p id="292be832-d053-8050-8c36-f7da0394298e" class="">✔️ 다양한 반응형 옵션과 네비게이션 기능으로 대규모 콘텐츠 캐러셀 UI 구현에 적합</p></div><div style="display:contents" dir="auto"><p id="292be832-d053-803c-988a-fbcb2ca9faf8" class="">✔️ 커스텀 네비게이션 버튼을 통한 사용자 조작 편의성 강화</p></div><div style="display:contents" dir="auto"><p id="292be832-d053-8065-bc64-eb21f4ac2181" class="">✔️ Netflix-style의 탐색 경험을 구현하기에는 Framer Motion 단독보다 풍부한 옵션과 성능 최적화를 제공하는 Swiper가 적합하여 최종 선택</p></div></div></figure></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="292be832-d053-8067-92c3-e20b3f0ebd2c"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="292be832-d053-8029-9493-f7d785fbafb5" class="">Styled-Components</h3></div><div style="display:contents" dir="auto"><p id="292be832-d053-8049-b68e-d7ef6690b600" class="">✔️ CSS-in-JS 방식으로 컴포넌트 단위 스타일링을 적용해 재사용성 강화</p></div><div style="display:contents" dir="auto"><p id="292be832-d053-805a-a508-e5cdef94cdb4" class="">✔️ <code>GlobalStyle</code>과 <code>theme</code>을 활용해 일관된 디자인 시스템 구축 가능</p></div><div style="display:contents" dir="auto"><p id="292be832-d053-809a-b61e-ff5f03317330" class="">✔️ TypeScriptav와 결합하여 props 기반 동적 스타일링에 타입 안전성 확보</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="292be832-d053-8020-a07f-e7c50f351905" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-802b-9d0f-f7bd1d8b307b" class="block-color-yellow_background"><strong>Animation / Media</strong></h3></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="292be832-d053-80cd-a4ac-eea360f04b82"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="292be832-d053-80e1-8fdc-f8307b5530f9" class="">Framer-Motion</h3></div><div style="display:contents" dir="auto"><p id="292be832-d053-80c5-bde6-cf23e3af6fd5" class="">✔️ 선언적 애니메이션 API로 코드 가독성이 높고 유지보수에 용이</p></div><div style="display:contents" dir="auto"><p id="292be832-d053-8002-9806-e15897e6decf" class="">✔️ <code>layoutId</code>기반 애니메이션을 활용해 카드 → 모달 전환 시 사용자의 시각적 맥락 유지 가능</p></div><div style="display:contents" dir="auto"><p id="292be832-d053-8095-b51e-f7cf7260d27b" class="">✔️ <code>variants</code>로 <code>hover</code>효과를 선언적으로 제어하여 일관된 인터랙션 피드백 제공</p></div></div></figure></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="292be832-d053-8089-9fa7-df6274fbb384"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="292be832-d053-8090-9435-ec434c717186" class="">React-Youtube </h3></div><div style="display:contents" dir="auto"><p id="292be832-d053-80a4-ae7b-c0f3ca23c980" class="">✔️ YouTube IFrame API를 컴포넌트 기반으로 단순화해 트레일러 자동재생 UX 구현 가능</p></div><div style="display:contents" dir="auto"><p id="292be832-d053-8041-a9a0-f601edc0402a" class="">✔️ 트레일러 영상을 모달 배경으로 활용해 Netflix와 유사한 사용자 경험 제공</p></div><div style="display:contents" dir="auto"><p id="292be832-d053-805f-821f-d1dff16bfae2" class="">✔️ fetch한 데이터에서 영상을 찾을 수 없는 경우 공식 이미지로 Fallback 처리 → 안정적인 UX 보장</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="292be832-d053-80d8-b1ae-dcb285d56855" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-80c3-96bb-d52128c59c5d" class="block-color-yellow_background"><strong>External API Integration</strong></h3></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="292be832-d053-80de-a4bb-ec319e646d3e"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="292be832-d053-80b4-8b32-f7d6d479d167" class="">TMDB API</h3></div><div style="display:contents" dir="auto"><p id="292be832-d053-80dd-978d-d87629b5d21c" class="">✔️ 영화·TV·트레일러·검색 등 다양한 엔드포인트 제공 → 실제 서비스 수준의 데이터 연동 경험 확보</p></div><div style="display:contents" dir="auto"><p id="292be832-d053-80b1-a25f-d279fe0000f4" class="">✔️ Axios 요청 함수를 <code>api.ts</code>로 모듈화해 코드 일관성과 유지보수성 강화</p></div><div style="display:contents" dir="auto"><p id="292be832-d053-8021-91cd-cec6df7b3df8" class="">✔️ TanStack Query와 결합하여 캐싱·에러 관리 최적화 → 반복 요청 최소화 및 UX 개선</p></div><div style="display:contents" dir="auto"><p id="292be832-d053-80c0-ac7e-de17ee9ccf1d" class="">✔️ API Key는 클라이언트에 노출하지 않고 Vercel Serverless Functions 프록시로 처리해 보안 강화</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="292be832-d053-80f8-b514-e3da1501a71c" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-80b3-9af0-fefaba2fb7f6" class="block-color-yellow_background">Deployment &amp; 환경 구성</h3></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="292be832-d053-80e7-b311-d77baa332e22"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="292be832-d053-806d-a194-dd610d154846" class="">Vercel</h3></div><div style="display:contents" dir="auto"><p id="292be832-d053-804e-ba6d-ff0416c55d17" class="">✔️ GitHub 연동 CI/CD로 커밋 시 Preview/Production 자동 배포 → 안정적인 배포 플로우 확보</p></div><div style="display:contents" dir="auto"><p id="292be832-d053-802a-848a-c1f0f2c1700d" class="">✔️ Serverless Functions와 결합해 API 프록시·환경변수 관리까지 지원 → 보안 및 확장성 강화</p></div><div style="display:contents" dir="auto"><p id="292be832-d053-80b7-8fec-c1358f99c5c2" class="">✔️ Netlify와 비교 검토 후, GitHub 연동과 글로벌 배포 성능에서 Vercel을 최종 선택</p></div></div></figure></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="292be832-d053-80fc-a15e-c018e9c3ffe2"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="292be832-d053-800e-a2f3-c44bc21aaafc" class="">React-Helmet-Async</h3></div><div style="display:contents" dir="auto"><p id="292be832-d053-8010-981a-ef38c6923120" class="">✔️ 페이지별 동적 메타데이터(title, description, OG 태그)를 설정해 SEO와 링크 공유 품질을 실질적으로 개선</p></div><div style="display:contents" dir="auto"><p id="292be832-d053-8051-a4dd-e9b8fdb7bcfa" class="">✔️ SPA 환경의 SEO 한계를 보완하는 용도로 적용 → Next.js 같은 SSR 프레임워크 대비 경량 대안으로 채택</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="292be832-d053-806c-855a-d49acf781ae9" class="">
+</p></div><div style="display:contents" dir="auto"><h1 id="27bbe832-d053-8003-acfa-f3c99702ae53" class="">🛠️ 트러블 슈팅</h1></div><div style="display:contents" dir="auto"><hr id="27bbe832-d053-80a4-bda8-c888ef813961"/></div><div style="display:contents" dir="auto"><h2 id="292be832-d053-8096-b07a-f949812f90e0" class="">1. <strong>라우팅 경로로 직접 접근했을 때 404 에러 발생</strong></h2></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-805f-9217-c46f0ca9db93" class="">❗ 문제 상황</h3></div><div style="display:contents" dir="auto"><ul id="292be832-d053-80b6-bfdc-f817dcefa757" class="bulleted-list"><li style="list-style-type:disc"><code>https://newflix-eileen.vercel.app/tv</code> 로 직접 접속하거나 새로고침 시 404 에러 발생</li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-80b9-8905-de72a55a4f2d" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-8079-9d5b-f3691824fe5a" class="">🔍 원인 분석</h3></div><div style="display:contents" dir="auto"><ul id="292be832-d053-80a0-8758-c1f931dff07a" class="bulleted-list"><li style="list-style-type:disc">Vite 기반 SPA(Single Page Application)는 라우팅을 클라이언트(React Router)가 처리</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-803b-a8ba-f5793416aa22" class="bulleted-list"><li style="list-style-type:disc">하지만 사용자가 주소창에 <code>/tv</code>를 직접 입력하면 서버(Vercel)는 실제 <code>/tv/index.html</code> 같은 정적 파일을 찾으려 함. 하지만 해당 파일이 없으므로 404 반환 발생</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-803d-a63a-ed0c6d89f691" class="bulleted-list"><li style="list-style-type:disc">로컬 개발 환경에서는 Vite 개발 서버가 history API fallback을 자동 적용해 모든 요청을 <code>index.html</code>로 돌려주므로 문제가 드러나지 않음 → 배포 환경에서만 발생</li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-800c-b8ed-c30cf3b0db3c" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-804f-8f33-d3678040c2fb" class="">🛠 해결 / 대응 방법</h3></div><div style="display:contents" dir="auto"><ul id="292be832-d053-8096-8d72-fc5d2300008b" class="bulleted-list"><li style="list-style-type:disc">프로젝트 루트에 <code>vercel.json</code> 파일을 생성하고 리라이트 규칙 추가<div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="292be832-d053-80aa-9853-d94fad62e35e" class="code code-wrap"><code class="language-JSON" style="white-space:pre-wrap;word-break:break-all">{
+  &quot;rewrites&quot;: [
+    { &quot;source&quot;: &quot;/(.*)&quot;, &quot;destination&quot;: &quot;/&quot; }
+  ]
+}</code></pre></div><div style="display:contents" dir="auto"><ul id="292be832-d053-80e9-bdaf-f9865f57dc84" class="bulleted-list"><li style="list-style-type:circle">이 설정은 주소창은 그대로 유지한 채 내부적으로 항상 <code>index.html</code>을 반환</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-8008-afd6-f9a823d393b7" class="bulleted-list"><li style="list-style-type:circle">React Router가 URL(<code>/tv</code>)을 해석해 알맞은 컴포넌트를 렌더링하게 됨</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-80f3-bd2a-c6c117f287cd" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-8080-b82c-e761799a496a" class="">✅ 결과 및 회고</h3></div><div style="display:contents" dir="auto"><ul id="292be832-d053-8098-b8ac-e5c6aaadc5ec" class="bulleted-list"><li style="list-style-type:disc">딥링크, 새로고침 모두 정상 동작하여 링크 안정성 확보</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-801e-b53c-c5b4e53e9495" class="bulleted-list"><li style="list-style-type:disc">SPA 배포 시 리라이트 규칙 설정이 필수적임을 체감</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-80de-b36c-f42e8596a35c" class="bulleted-list"><li style="list-style-type:disc">로컬(dev)과 프로덕션(prod) 환경 동작 차이를 경험하며, 서버/CDN은 정적 파일만 제공하고 라우팅은 클라이언트가 담당한다는 구조적 차이를 명확히 이해</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-8058-a8d5-ddeaa6f84915" class="bulleted-list"><li style="list-style-type:disc">이번 경험을 통해 SPA 배포 시 발생할 수 있는 라우팅 문제를 예측하고 사전에 설정할 수 있는 역량을 확보</li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-8019-b6e9-e02f7ec07f2b" class="">
+</p></div><div style="display:contents" dir="auto"><hr id="292be832-d053-80ee-b87e-f7f4b02a2dd4"/></div><div style="display:contents" dir="auto"><h2 id="292be832-d053-80f1-9389-ddd4f1dd8512" class="">2. 모달 커버 이미지 → 동영상 전환 시 Fallback 처리</h2></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-80dc-b179-da12b36b5e7b" class="">❗ 문제 상황</h3></div><div style="display:contents" dir="auto"><ul id="292be832-d053-8083-a2f3-ec2474f40281" class="bulleted-list"><li style="list-style-type:disc">모달 내부에서 커버 이미지 → 동영상 전환이 매끄럽지 못함<div style="display:contents" dir="auto"><ul id="292be832-d053-8051-8669-fd9f6f1619b8" class="bulleted-list"><li style="list-style-type:circle">동영상 재생 직후 커버 이미지가 잠깐 나타났다 사라짐</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-802f-af54-d54e829b4711" class="bulleted-list"><li style="list-style-type:circle">동영상이 실제로 재생 중인데도 커버 이미지가 계속 사라지지 않음</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-80bb-b867-e5db9d082926" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-80e1-af83-f73bcb95b4ad" class="">🔍 원인 분석</h3></div><div style="display:contents" dir="auto"><ul id="292be832-d053-804f-bc46-df2c52c7c225" class="bulleted-list"><li style="list-style-type:disc">커버 이미지의 로딩 속도가 비디오 플레이어의 마운트 속도보다 늦어 순간적으로 이미지가 나타났다 사라짐</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-8020-9a59-deaa1de62595" class="bulleted-list"><li style="list-style-type:disc"><code>React-YouTube</code>의 <code>onStateChange(PLAYING)</code> 신호가 브라우저/네트워크 지연으로 늦게 도착해 영상이 이미 재생 중인데도 커버 이미지가 남게 됨</li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-805c-ae99-e1be26427135" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-8030-82dd-dcfc07da6fe7" class="">🛠 해결 / 대응 방법</h3></div><div style="display:contents" dir="auto"><ul id="292be832-d053-807d-bf6f-d42a77ad449c" class="bulleted-list"><li style="list-style-type:disc"><strong>커버 이미지 프리로드</strong><div style="display:contents" dir="auto"><ul id="292be832-d053-8033-b491-f9a0a1cea50d" class="bulleted-list"><li style="list-style-type:circle"><code>new Image().src = url</code> 방식으로 이미지를 캐싱하여 iframe이 마운트되기 전에 커버를 준비시켜 깜빡임 방지</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-80b7-a869-d2f4cd42186a" class="bulleted-list"><li style="list-style-type:circle">비디오 플레이어가 준비되면 지연 없이 커버 이미지 → 동영상 전환이 가능하도록 개선</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-806d-bae2-e42bb8acf51c" class="bulleted-list"><li style="list-style-type:disc"><strong>Fallback 처리 (차선책 보장)</strong><div style="display:contents" dir="auto"><ul id="292be832-d053-80eb-9a75-d1f262a92b26" class="bulleted-list"><li style="list-style-type:circle">플레이어의 <code>autoplay</code> 기능을  끄고 <code>onReady</code> 이벤트 발생 시에만 수동으로 재생을 트리거하여 초기 불안정성 줄임</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-8026-bc94-d847958c1710" class="bulleted-list"><li style="list-style-type:circle"><code>onStateChange</code>로 영상 재생 상태(PLAYING) 확인 후 <code>hasPlayed = true</code> 설정하여 커버 제거</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-807c-a080-e0a1b04b0bf7" class="bulleted-list"><li style="list-style-type:circle"><code>setTimeout</code>을 사용해 <code>onStateChange</code> 이벤트가 제때 발생하지 않는 예외 상황에 대비한 fallback 로직을 추가 <div style="display:contents" dir="auto"><ul id="292be832-d053-80bf-b63e-fff033ff8ba7" class="bulleted-list"><li style="list-style-type:square">일정 시간 내에 신호가 없으면 영상 상태를 재검증하여 예외 상황에서도 커버 제거 보장</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><blockquote id="292be832-d053-8053-8f38-f61f17d3f330" class="">Fallback(차선책) 처리란, 기본 동작(재생 신호)이 지연·실패할 경우에도 UX가 깨지지 않도록 대체 동작을 마련하는 기법</blockquote></div></li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-8012-8ae3-fab1c5a9faec" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-8030-9fb0-c6c7b291b2ab" class="">✅ 결과 및 회고</h3></div><div style="display:contents" dir="auto"><ul id="292be832-d053-803a-950c-fc941acb2d07" class="bulleted-list"><li style="list-style-type:disc">이미지의 프리로드로 커버 이미지 → 동영상 전환이 매끄럽게 이루어져 UX 품질을 안정적으로 개선</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-8072-907b-d9c6e1871c91" class="bulleted-list"><li style="list-style-type:disc">Fallback 로직 추가로 신호 지연 및 실패 상황에서도 항상 안정적인 화면 전환 보장</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-806d-b0c4-cc451a503c29" class="bulleted-list"><li style="list-style-type:disc">이번 경험을 통해 외부 API 신호 지연, 브라우저 autoplay 정책까지 고려한 차선책 마련이 실무 UX 설계에서 필수임을 학습함</li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-8048-a9f7-f8c618f9b644" class="">
+</p></div><div style="display:contents" dir="auto"><hr id="292be832-d053-8024-889e-fa7b71648969"/></div><div style="display:contents" dir="auto"><h2 id="292be832-d053-80bd-9da0-e7ff2047e92d" class="">3. Vercel Serverless Functions를 이용해 프록시 서버 구현</h2></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-80a1-869e-d69d0221776a" class="">❗ 문제 상황</h3></div><div style="display:contents" dir="auto"><ul id="292be832-d053-80db-bea7-d2a11670bf51" class="bulleted-list"><li style="list-style-type:disc"><code>.env</code>에 API Key를 숨겼으나, 프론트엔드 빌드 시 번들에 포함돼 민감 정보가 브라우저 네트워크 탭에서 그대로 노출되는 문제 발생</li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-8001-8e68-eff604b712f3" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-802c-ab74-dab2192e2177" class="">🔍 원인 분석</h3></div><div style="display:contents" dir="auto"><ul id="292be832-d053-8073-acb1-e4f62861bff8" class="bulleted-list"><li style="list-style-type:disc">프론트엔드 빌드 도구는 <code>.env</code> 파일을 읽어서 JS 번들에 그대로 주입하기 때문에, 민감한 Key를 <code>.env</code>에 넣더라도 클라이언트 코드에서 사용하면 그대로 노출됨</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-80b4-a1ca-d34237d6d602" class="bulleted-list"><li style="list-style-type:disc">즉, API Key는 반드시 서버 전용 환경에서만 관리해야 하며, 프론트엔드 <code>.env</code>로는 보안이 보장되지 않음</li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-80e5-a9b3-f765bfb10ff6" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-8064-85fd-d073c325a20c" class="">🛠 해결 / 대응 방법</h3></div><div style="display:contents" dir="auto"><ul id="292be832-d053-8050-99a0-f2a952b44819" class="bulleted-list"><li style="list-style-type:disc"><strong>Vercel Serverless Functions로 프록시 서버 구현</strong><div style="display:contents" dir="auto"><ul id="292be832-d053-8084-9aa5-c55961d510e0" class="bulleted-list"><li style="list-style-type:circle"><code>vercel CLI</code> 설치 후 <code>/api</code> 디렉토리에 서버리스 핸들러 함수를 정의</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-8062-88f9-e6d3e34a61f7" class="bulleted-list"><li style="list-style-type:circle">서버리스 함수에서 <code>process.env.MOVIEDB_TOKEN</code>을 사용해 TMDB API 요청 → 응답만 클라이언트에 전달<div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="292be832-d053-80dd-8e26-cb5b49b80867" class="code code-wrap"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">import { movieInstance } from &quot;./movieInstance.js&quot;;
+
+export default async function handler(req, res) {
+  const { url } = req.query;
+
+  if (!url) return res.status(400).json({ error: &quot;URL 파라미터 없음&quot; });
+  if (!process.env.MOVIEDB_TOKEN)
+    return res.status(500).json({ error: &quot;환경 변수 없음&quot; });
+
+  try {
+    const response = await movieInstance.get(url);
+    return res.status(200).json(response.data);
+  } catch (error) {
+    console.error(&quot;TMDB 호출 에러:&quot;, error.message);
+    return res.status(500).json({ error: &quot;TMDB 요청 실패&quot; });
+  }
+}</code></pre></div></li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-804b-9929-c3760d2a5560" class="bulleted-list"><li style="list-style-type:circle">클라이언트는 <code>axios.get(&quot;/api/getMovies&quot;, { params: { url } })</code> 방식으로 서버리스 함수로 API 요청을 보내고, 서버리스 함수에서는 <code>req.query.url</code> 을 읽어 외부 API 요청에 사용<div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="292be832-d053-80ed-a9c7-f0040ca19df3" class="code code-wrap"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">export async function getMovies(url: string) {
+  try {
+    const response = await axios.get(&quot;/api/getMovies&quot;, {
+      params: {
+        url,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+}</code></pre></div></li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-8015-8f53-cf3adb27b17c" class="bulleted-list"><li style="list-style-type:circle">로컬에서는 <code>vercel dev</code>를 실행해 <strong>프론트 + </strong><code><strong>/api</strong></code><strong>서버리스 함수</strong>를 동시에 구동하여 테스트 가능</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-808c-84ae-cf4cfdd5a8d3" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-80a1-bb4b-c103a64a0e08" class="">✅ 결과 및 회고</h3></div><div style="display:contents" dir="auto"><ul id="292be832-d053-80fe-8ae6-c526e1c94fc8" class="bulleted-list"><li style="list-style-type:disc">API Key가 클라이언트에서 노출되지 않도록 하여 보안 문제를 해결</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-8028-9cd2-fb1ab155cec2" class="bulleted-list"><li style="list-style-type:disc">별도의 백엔드 서버 없이 Serverless Functions로 프록시 패턴을 적용하는 방법을 학습</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-8008-bf5d-f76c9e617bdd" class="bulleted-list"><li style="list-style-type:disc">서버 구축 없이도 API 프록시를 추가할 수 있어, 작은 프로젝트에서도 보안 / 확장성을 동시에 확보할 수 있음을 확인</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-8078-ac26-ca9fb4eca35a" class="bulleted-list"><li style="list-style-type:disc">이번 경험을 통해 실무 서비스에서도 민감 정보는 반드시 서버 전용 환경에서만 관리해야 한다는 원칙을 체감</li></ul></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

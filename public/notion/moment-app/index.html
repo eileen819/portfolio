@@ -1,0 +1,742 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Moment App</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="27bbe832-d053-80a3-a048-d708cb54b9da" class="page sans"><header><img class="page-cover-image" src="https://capsule-render.vercel.app/api?type=waving&amp;color=0:FFD194,100:D1913C&amp;height=200&amp;section=header" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">🗒️</span></div><h1 class="page-title" dir="auto">Moment App</h1><p class="page-description" dir="auto"></p><table class="properties"><tbody><tr class="property-row property-row-text"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/description_gray.svg" style="width:14px;height:14px;display:block"/></span>개요</th><td>바닐라 JS 기반 일정 관리 앱</td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/list_gray.svg" style="width:14px;height:14px;display:block"/></span>기술 스택</th><td><span class="selected-value select-value-color-blue">CSS</span><span class="selected-value select-value-color-orange">HTML</span><span class="selected-value select-value-color-yellow">JavaScript</span></td></tr><tr class="property-row property-row-url"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/link_gray.svg" style="width:14px;height:14px;display:block"/></span>Demo</th><td><a href="https://moment-of-today.netlify.app/" class="url-value">https://moment-of-today.netlify.app/</a></td></tr><tr class="property-row property-row-url"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/link_gray.svg" style="width:14px;height:14px;display:block"/></span>GitHub Repo</th><td><a href="https://github.com/eileen819/moment-app" class="url-value">https://github.com/eileen819/moment-app</a></td></tr></tbody></table></header><div class="page-body"><div style="display:contents" dir="auto"><h2 id="28ebe832-d053-80bb-84e6-e958a7121626" class=""><strong>🗒️ 이루고 싶은 목표와 할 일들을 관리해 보세요!</strong></h2></div><div style="display:contents" dir="ltr"><figure id="28ebe832-d053-80a0-9b53-da5de33c3e9c" class="image"><a href="https://github.com/eileen819/moment-app/blob/main/assets/demo.png?raw=true"><img src="https://github.com/eileen819/moment-app/blob/main/assets/demo.png?raw=true"/></a></figure></div><div style="display:contents" dir="auto"><h1 id="27bbe832-d053-8073-9f4e-efba05cf92c9" class="">🔈 프로젝트 소개</h1></div><div style="display:contents" dir="auto"><hr id="27bbe832-d053-8069-9ff9-efd4d548120b"/></div><div style="display:contents" dir="auto"><ul id="292be832-d053-807e-975c-cc615fac95d0" class="bulleted-list"><li style="list-style-type:disc">Moment App은 <strong>사용자의 목표 관리와 생산성을 높이는 To-Do List 웹 애플리케이션</strong>입니다.</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-800a-bf8c-c59181b988a7" class="bulleted-list"><li style="list-style-type:disc">HTML, CSS, JavaScript로 제작되어 <strong>할 일 관리, D-Day, 랜덤 명언, 실시간 날씨 등의 기능을 제공</strong>합니다.</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-80a1-9ef9-ccf21eea7f0b" class="bulleted-list"><li style="list-style-type:disc">또한 <strong>Netlify Functions 기반 서버리스 구조를 적용</strong>해 API Key 보안을 강화하고, <strong>반응형 디자인</strong>으로 모바일 환경에서도 매끄러운 UX를 제공합니다.</li></ul></div><div style="display:contents" dir="auto"><p id="27bbe832-d053-8037-89bc-facabd2c9983" class="">
+</p></div><div style="display:contents" dir="auto"><h1 id="27bbe832-d053-80d7-9b8e-c4ae58d619c0" class="">🔎 주요 기능</h1></div><div style="display:contents" dir="auto"><hr id="27bbe832-d053-802c-a2eb-c836f190c1c6"/></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-808d-999b-ed3de5e40196" class=""><strong>✅ To-Do List</strong></h3></div><div style="display:contents" dir="auto"><ul id="292be832-d053-8089-9e0f-cd2fd3c85828" class="bulleted-list"><li style="list-style-type:disc">할 일의 추가, 삭제, 완료 체크 가능</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-80d3-93ce-e5c84aa4d8e1" class="bulleted-list"><li style="list-style-type:disc"><code>localStorage</code>를 이용한 데이터의 저장 기능으로 새로고침을 해도 데이터가 유지됨</li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-808f-b75c-d68ef9594732" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-8051-a2bd-de1cd2dcfca2" class=""><strong>✅ D-day List</strong></h3></div><div style="display:contents" dir="auto"><ul id="292be832-d053-8098-a7fb-c9a5ac79693b" class="bulleted-list"><li style="list-style-type:disc">사용자가 지정한 날짜까지 남은 일 수를 자동으로 계산하여 D-day 형식으로 화면에 표시</li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-809b-8079-e956a47bf7a9" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-8095-bbbe-cd82497825d1" class=""><strong>✅ 시계와 날씨</strong></h3></div><div style="display:contents" dir="auto"><ul id="292be832-d053-8097-9675-dc39691b5ddc" class="bulleted-list"><li style="list-style-type:disc">초 단위로 갱신되는 실시간 시간을 표시</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-8065-b57f-d130edc2dbfb" class="bulleted-list"><li style="list-style-type:disc"><code>OpenWeather API</code>로 사용자 위치 기반 실시간 날씨 정보 제공</li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-806b-8099-d9fccc8d3a78" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-808e-9e34-d0953429cf66" class=""><strong>✅ 랜덤으로 바뀌는 배경화면과 명언</strong></h3></div><div style="display:contents" dir="auto"><ul id="292be832-d053-808a-8f90-f6d99913c905" class="bulleted-list"><li style="list-style-type:disc">새로고침 시 배경화면과 명언이 랜덤으로 표시</li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-80a5-a904-f48ab345d889" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="292be832-d053-800c-a1ba-de9792f7997c" class=""><strong>✅ 반응형 디자인</strong></h3></div><div style="display:contents" dir="auto"><ul id="292be832-d053-805d-bcda-e8ad11bcc41a" class="bulleted-list"><li style="list-style-type:disc">다양한 디바이스 해상도에서 최적화된 인터페이스 제공</li></ul></div><div style="display:contents" dir="auto"><ul id="292be832-d053-8088-8e30-c338651af245" class="bulleted-list"><li style="list-style-type:disc">CSS 미디어 쿼리(<code>@media</code>) 활용하여 화면 크기에 따라 레이아웃 조정</li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-80e3-a1bc-ed6906e45510" class="">
+</p></div><div style="display:contents" dir="auto"><h1 id="27bbe832-d053-80c3-b775-fdbf077637ab" class="">🗣️ 기술적 의사결정</h1></div><div style="display:contents" dir="auto"><hr id="27bbe832-d053-80a9-8e6d-f6bd2debe827"/></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-801a-89bf-fee186784360" class="block-color-yellow_background">Programming Language</h3></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="28fbe832-d053-804c-b0d1-c7d2985c1b3b"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-805f-b658-f38f90a87079" class="">JavaScript</h3></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-80f3-9af9-fceff0f637fc" class="">✔️ 웹 개발의 핵심 언어로, 프레임워크나 라이브러리의 추상화 없이 DOM API 및 기본 문법을 활용하여 동적인 UI 구현의 원리를 깊이 있게 이해하고자 선택</p></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-80a1-90c0-cc4045ee20ec" class="">✔️ 백엔드 없이 <code>localStorage</code>를 통한 데이터 저장이 용이하기 때문에 해당 프로젝트의 규모와 목적에 부합한다고 생각했음</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-8001-99a8-c4fd73d62a2c" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-8028-b994-e91ea3e1ce0c" class="block-color-yellow_background">Styling</h3></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="28fbe832-d053-8038-a7c3-faa545853835"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-8015-8a01-e7fd0a8ffb7b" class="">CSS</h3></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-80eb-a5c9-fa34a795629f" class="">✔️ 별도의 CSS 프레임워크 없이, 직접 CSS를 작성하여 웹 표준 기반의 스타일링 원리를 학습하기에 적합하다고 판단하여 적용함</p></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-80a1-9201-c497399f44ea" class="">✔️ 미디어 쿼리(<code>@media</code>)를 활용한 반응형 디자인 구현으로 다양한 디바이스 환경 고려가 가능</p></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-804a-9f98-dc8ed4d2d506" class="">✔️ 작은 규모의 프로젝트에서는 클래스 기반의 스타일링이 스타일 코드의 유지보수성과 가독성을 높이는데 적합하다고 판단</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-80a1-9e43-e596a6bc2ef7" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-80f9-9c86-f6102684251a" class="block-color-yellow_background"><strong>Storage</strong></h3></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="28fbe832-d053-80e9-9a1d-f408fa4824a6"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-801d-8f16-f11629934168" class="">localStorage</h3></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-808a-8a08-f79aef98077c" class="">✔️ 백엔드 서버 없이 클라이언트 측에서 데이터를 영구적으로 저장하기에 적합</p></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-80d0-b186-ff201d208496" class="">✔️ 사용자가 입력한 투두 데이터를 새로고침 후에도 유지가 가능</p></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-808d-9ea7-d796a5fc7681" class="">✔️ 별도의 데이터베이스 설정 없이 간편하게 데이터를 관리할 수 있어 해당 프로젝트의 규모와 목적에 적합하다고 판단 <em>(단, 대용량 데이터나 민감한 정보 저장에는 부적합한 클라이언트 저장 방식임을 인지하고 있음)</em></p></div></div></figure></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-80a4-adf3-d2cdf76455e7" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-801d-946e-c923aa7f417d" class="block-color-yellow_background"><strong>API Integration</strong></h3></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="28fbe832-d053-807b-a914-e0cda766663b"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-80d8-b16b-e251cb6f8313" class="">OpenWeather API</h3></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-801f-93b0-d45c60258a6b" class="">✔️ 사용자가 당일의 날씨를 확인하고 계획을 세울 수 있도록 OpenWeather API를 연동</p></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-808c-a602-fa6cb2998d4e" class="">✔️ 무료로 사용할 수 있는 공공 API</p></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-8034-9d73-d9682583b2f1" class="">✔️ 사용자의 위치 정보를 활용하여 실시간 날씨 데이터를 쉽게 가져올 수 있음</p></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-80c7-a590-e04cb4a9f5b5" class="">✔️ <code>fetch()</code>와 <code>async/await</code>를 활용한 비동기 처리 및 에러 핸들링 학습에도 유용</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-80d4-ba16-d2ba4a5569a9" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-804e-96a3-ec5145db6e3e" class="block-color-yellow_background">Deployment</h3></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="28fbe832-d053-80d1-a515-e44a7a84036d"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-80ea-b933-e0b12121d092" class="">Netlify</h3></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-801e-9221-dfbfb93dda87" class="">✔️ 추가적인 설정 없이 빠르고 간편하게 정적 사이트 배포가 가능 </p></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-808e-a308-fd37bf6f2ed6" class="">✔️ GitHub 레포지토리와 연동하여 코드를 push하는 것만으로도 자동 배포가 가능</p></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-8042-abed-dffdf093f585" class="">✔️ <code>Netlify CLI</code> 및 플랫폼의 환경변수 설정 기능을 활용하여 <code>OpenWeather API Key</code>와 같은 민감 정보를 클라이언트 코드에 직접 노출하지 않고 안전하게 관리 가능</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-8014-9f03-dc9d8d7c79c6" class="">
+</p></div><div style="display:contents" dir="auto"><h1 id="27bbe832-d053-8065-bd16-f263e96ea19d" class="">🛠️ 트러블 슈팅</h1></div><div style="display:contents" dir="auto"><hr id="27bbe832-d053-8090-8ff0-c44854e75dbc"/></div><div style="display:contents" dir="auto"><h2 id="28fbe832-d053-8094-846d-f10818bc60bf" class="">1. API 호출 에러</h2></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-8025-b220-f195f548929e" class="">❗ 문제 상황</h3></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-80ca-b0ef-d4272ac50028" class="bulleted-list"><li style="list-style-type:disc">앱에서 사용자 위치에 기반한 실시간 날씨 정보 API(OpenWeather API)를 호출하기 위해 <code>api.js</code> 파일에 API Key를 저장을 함. 그리고 보안을 위해 <code>.gitignore</code>에 해당 파일을 등록했었음</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-80fb-b151-de71a52acb44" class="bulleted-list"><li style="list-style-type:disc">그러나 배포 후, 실제로는 API 호출이 정상적으로 이루어지지 않고 404에러가 뜸</li></ul></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-802e-a3f5-d210b43c476d" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-805c-90f8-d6bb2b724edf" class="">🔍 원인 분석</h3></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-8041-92d0-c4b4a9604801" class="bulleted-list"><li style="list-style-type:disc">문제의 핵심은 <code>.gitignore</code>에 등록한 <code>api.js</code>는 Git에 커밋되지 않기 때문에 GitHub, Netlify와 같은 원격 저장소나 배포 환경에는 존재하지 않았다는 점</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-8025-9513-c6fdede921b1" class="bulleted-list"><li style="list-style-type:disc">로컬 개발 환경에서는 <code>api.js</code>파일을 직접 참조하였기 때문에 API 호출이 정상적으로 이뤄졌지만, 배포된 서버에서는 해당 파일이 존재하지 않아서 API Key 값이 <code>undefined</code>으로 설정되고 이는 API 요청 실패로 이어지게 됨. 이로 인해 OpenWeather API 호출 시 인증 정보 누락으로 404 에러(또는 401 Unauthorized 등)가 발생했음을 확인할 수 있었음</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-80ae-978e-ce7bd943d82a" class="bulleted-list"><li style="list-style-type:disc">이는 환경변수 파일(<code>.env</code>)과 클라이언트 사이드 코드의 보안 관리 방식에 대한 이해가 부족했던 부분에서 발생한 문제</li></ul></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-80bc-b0d6-ecb1dc58b77c" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-80dd-8bfd-faa3c20fabde" class="">🛠 해결 / 대응 방법</h3></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-80d4-a757-ed1b4f4cada5" class="bulleted-list"><li style="list-style-type:disc">API Key를 클라이언트 측 코드에 하드코딩하거나 <code>api.js</code> 파일을 통해서 직접 참조하는 방식 대신, 보안강화를 위해 <code>.env</code> 환경변수 파일을 생성하기로 함</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-80aa-b366-f3eb950e6a12" class="bulleted-list"><li style="list-style-type:disc">이를 위해 바닐라 자바스크립트 프로젝트를 유지하면서도 백엔드 없이 보안을 강화할 수 있도록 Node.js 환경을 도입하고 <code>Netlify Functions</code>를 활용한 서버리스 함수를 도입하기로 결정<div style="display:contents" dir="auto"><ul id="28fbe832-d053-80d8-8305-d5978d62e9a4" class="bulleted-list"><li style="list-style-type:circle"><code>.env</code> 파일은 <code>.gitignore</code>에 등록해서 API Key가 Git 저장소에 포함되지 않도록 함</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-80f7-961e-c06d295b328d" class="bulleted-list"><li style="list-style-type:circle">클라이언트(브라우저)에서 API Key가 노출되지 않도록 <strong>Netlify Functions를 활용하여 프록시 서버를 구축</strong></li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-80ac-bb8d-df729a4f27fa" class="bulleted-list"><li style="list-style-type:disc">이로 인해, 클라이언트는 API Key 없이 Netlify Functions의 엔드 포인트로 요청을 보내게 되고, 서버리스 함수 내부에서 <code>.env</code> 파일에 안전하게 보관된 API Key를 사용하여 OpenWeather API를 호출한 후, 그 결과를 클라이언트에 반환하도록 구현함</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-80c0-b7af-c64302fb7922" class="bulleted-list"><li style="list-style-type:disc">배포 환경에서는 <code>.env</code> 파일이 직접 업로드되지 않으므로, Netlify 빌드 설정에서 환경변수를 직접 등록하여 서버리스 함수가 API Key에 접근할 수 있도록 구성함</li></ul></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-8042-babb-d251419cbf46" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-80f6-b31a-e7514d10824b" class="">✅ 결과 및 회고</h3></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-8046-8880-dda0acb8c31e" class="bulleted-list"><li style="list-style-type:disc">Netlify 서버리스 함수 도입과 Netlify 배포 환경에서의 환경변수 등록을 통해 클라이언트 측에서 API Key를 안전하게 숨기고 관리할 수 있게됨</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-8034-afa6-e244f5eaa967" class="bulleted-list"><li style="list-style-type:disc">프로젝트 초기에 <code>.gitignore</code>에 API Key가 포함된 <code>api.js</code> 파일을 제외하여 API Key가 Git 저장소에서 노출되는 것은 막았지만, 정적 웹 호스팅 환경에서는 해당 파일 자체가 배포되지 않아 클라이언트 측에서 API Key를 불러올 수 없어서 호출이 실패한다는 사실을 학습하게 됨</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-8041-b526-d40194914474" class="bulleted-list"><li style="list-style-type:disc">이 경험을 통해서 순수 바닐라 JS만으로는 민감한 API Key를 안전하게 관리하는 것에 한계가 있음을 명확히 인지할 수 있게 되었고, 이를 해결하기 위해서는 Node.js 기반의 서버리스 함수(예: Netlify Functions)를 활용한 프록시 구조로 아키텍처를 확장해야 함을 깨달음</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-80fc-ab4b-ecf1e1b5abf4" class="bulleted-list"><li style="list-style-type:disc">이 트러블 슈팅 과정을 통해 보안을 고려한 API Key 관리 방식, 환경 변수 설정, 그리고 서버리스 함수의 실전 활용 능력을 크게 향상시킬 수 있었음. 이는 이후 진행할 모든 프로젝트에서 <code>.env</code>기반의 환경변수 관리와 보안 설정을 초기 단계부터 고려하는 습관을 형성하는 결정적인 계기가 될 수 있었음</li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-80a1-8309-ccd343128da3" class="">
+</p></div><div style="display:contents" dir="auto"><hr id="292be832-d053-8027-8ca2-e91beec741c7"/></div><div style="display:contents" dir="auto"><h2 id="28fbe832-d053-80b8-a0b8-e77922fd1854" class="">2. D-Day 날짜 계산 및 업데이트 오류</h2></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-805a-8a91-f3ea2aeaaef2" class="">❗ <strong>문제 상황</strong></h3></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-8074-96e2-fa604c89be43" class="bulleted-list"><li style="list-style-type:disc">사용자가 등록한 D-Day가 날짜가 바뀌었음에도 자동으로 갱신되지 않고, 페이지를 새로고침해야만 정확한 D-Day 값이 표시되는 문제가 발생함</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-8031-9ade-d459812e9ceb" class="bulleted-list"><li style="list-style-type:disc"><code>setInterval(countDays, 86400000);</code> 로 24시간마다 갱신되도록 구현했지만, 실제로는 이벤트 등록 시점 기준으로 24시간 후에만 D-Day가 갱신됨</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-80ba-8960-de698fa216bb" class="bulleted-list"><li style="list-style-type:disc">이로 인해 자정이 지났음에도 여전히 D-1로 표시되는 등, 부정확한 날짜 정보로 UX 혼란이 발생함</li></ul></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-80d6-a22d-da8e43c31b5a" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-80e5-87e6-dc64aebe98ec" class="">🔍 원인 분석</h3></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-803e-a794-c19e5f892e72" class="bulleted-list"><li style="list-style-type:disc"><code>setInterval(countDays, 86400000);</code> 코드는 D-Day가 추가되거나 페이지가 처음 로드된 시점으로 부터 24시간 간격으로 D-Day를 갱신하기 때문에, D-Day의 갱신이 자정 기준이 아닌 등록 시간 기준으로만 동작함</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-80fb-9ecb-ee4e4b742a55" class="bulleted-list"><li style="list-style-type:disc">예를 들어, <code>setInterval</code>이 D-Day가 새로 등록된 오후 3시에 시작되었다면, 다음 날 오후 3시에야 날짜가 갱신되어 정확한 D-Day 날짜를 반영하지 못하는 오류가 발생함</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-806a-924d-dcda0632d1ce" class="bulleted-list"><li style="list-style-type:disc">이로 인하여 여러 개의 D-Day가 있을 경우, 리스트 내 D-Day들이 서로 다른 시점에 갱신되기 때문에, 자정 기준으로 일괄적으로 갱신되지 않아 UI 일관성이 깨지는 문제가 발생함</li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-80c5-a242-c54d9a0764a4" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-8018-a774-e230fe37a00e" class="">🛠 해결 / 대응 방법</h3></div><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="28fbe832-d053-802c-bc93-f685ae0ae1e5" class="code code-wrap"><code class="language-JavaScript" style="white-space:pre-wrap;word-break:break-all">function scheduleDailyUpdate() {
+    const now = new Date();
+    const midnight = new Date(now);
+    midnight.setDate(now.getDate() + 1);
+    midnight.setHours(0, 0, 0, 0);
+    const remainingTime = midnight.getTime() - now.getTime();
+
+    li.dataset.scheduleIntervalId = setTimeout(() =&gt; {
+      countDays();
+      li.dataset.intervalId = setInterval(countDays, 86400000);
+    }, remainingTime);
+  }</code></pre></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-801b-94a9-d7eb54a03b77" class="bulleted-list"><li style="list-style-type:disc">이 문제를 해결하기 위해 <code><strong>setTimeout</strong></code><strong>과 </strong><code><strong>setInterval</strong></code><strong>을 조합한 </strong><code><strong>scheduleDailyUpdate()</strong></code><strong> 함수를 도입</strong>하기로 함<div style="display:contents" dir="auto"><ul id="28fbe832-d053-8098-bdd1-df8e514675b6" class="bulleted-list"><li style="list-style-type:circle"><code><strong>setTimeout</strong></code><strong>으로 첫 갱신 시점 제어</strong><div style="display:contents" dir="auto"><ul id="28fbe832-d053-8080-a21e-d3574653de74" class="bulleted-list"><li style="list-style-type:square">먼저, 현재 시간과 다음날 자정(<code>00:00:00</code>) 사이의 남은 시간을 계산함</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-80db-a9ef-d0193dc7bb43" class="bulleted-list"><li style="list-style-type:square">이 남은 시간만큼 <code>setTimeout()</code>을 설정하여 다음 자정에 D-Day가 처음으로 갱신되도록 함</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-8061-b0a2-c1b59921dfbf" class="bulleted-list"><li style="list-style-type:circle"><code><strong>setInterval</strong></code><strong>로 일일 갱신</strong><div style="display:contents" dir="auto"><ul id="28fbe832-d053-808d-b628-c0289cef26a0" class="bulleted-list"><li style="list-style-type:square"><code>setTimeout</code>이 실행된 후에는, <code>setInterval()</code>을 통해 24시간(<code>86400000ms</code>)마다 D-Day를 갱신하도록 설정</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-808a-99d8-e1c84ae54156" class="bulleted-list"><li style="list-style-type:square">이는 매일 자정 마다 D-Day가 갱신될 수 있도록 함</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-8089-9166-d99a0e8f62b3" class="bulleted-list"><li style="list-style-type:circle"><strong>메모리 해제</strong><div style="display:contents" dir="auto"><ul id="28fbe832-d053-80d0-b827-cae451a8c410" class="bulleted-list"><li style="list-style-type:square"><code>setTimeout</code>과 <code>setInterval</code>의 리턴값을 각 D-Day 항목의 <code>&lt;li&gt;</code>요소의 <code>dataset</code>을 활용하여 커스텀 데이터 속성(<code>li.dataset.scheduleIntervalId</code>, <code>li.dataset.intervalId</code>)으로 추가함</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-8025-b41b-da49ea5a68af" class="bulleted-list"><li style="list-style-type:square">이는 D-Day 삭제 시 <code>clearTimeout</code>과 <code>clearInterval</code>을 호출하여 불필요한 타이머가 계속 실행되는 것을 막고 메모리 누수를 방지하도록 함</li></ul></div></li></ul></div></li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-80cb-9813-e3c8a624716b" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-8066-b559-faa2243a1c68" class="">✅ 결과 및 회고</h3></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-80bf-9ba3-ec61f9361e0c" class="bulleted-list"><li style="list-style-type:disc"><code>setTimeout + setInterval</code> 조합을 활용하여 매일 자정 기준으로 정확하게 D-Day를 갱신할 수 있는 구조를 구현</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-8074-92b2-d8a0e290480c" class="bulleted-list"><li style="list-style-type:disc">단순한 인터벌 갱신 방식에서 벗어나 정확한 타이밍 제어를 위한 로직 설계 감각을 익힐 수 있었음</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-80b1-ba8c-d82cef80075d" class="bulleted-list"><li style="list-style-type:disc">또한, 메모리 누수 예방을 위해 타이머 해제도 함께 처리하면서 실전에서의 자원 관리의 중요성도 체감함</li></ul></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

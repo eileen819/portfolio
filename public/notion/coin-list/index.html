@@ -1,0 +1,759 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Coin-List</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="27bbe832-d053-806e-9feb-d54cf8aa294f" class="page sans"><header><img class="page-cover-image" src="https://capsule-render.vercel.app/api?type=waving&amp;color=0:0F2027,100:2C5364&amp;height=200&amp;section=header" style="object-position:center 50%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">📈</span></div><h1 class="page-title" dir="auto">Coin-List</h1><p class="page-description" dir="auto"></p><table class="properties"><tbody><tr class="property-row property-row-text"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/description_gray.svg" style="width:14px;height:14px;display:block"/></span>개요</th><td>실시간 암호화폐 시세 조회 서비스</td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/list_gray.svg" style="width:14px;height:14px;display:block"/></span>기술 스택</th><td><span class="selected-value select-value-color-blue">React</span><span class="selected-value select-value-color-gray">Recoil</span><span class="selected-value select-value-color-brown">TanStack Query</span><span class="selected-value select-value-color-orange">TypeScript</span><span class="selected-value select-value-color-pink">styled-components</span></td></tr><tr class="property-row property-row-url"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/link_gray.svg" style="width:14px;height:14px;display:block"/></span>Demo</th><td><a href="https://eileen819.github.io/coin-list/" class="url-value">https://eileen819.github.io/coin-list/</a></td></tr><tr class="property-row property-row-url"><th><span class="icon property-icon"><img src="https://www.notion.so/icons/link_gray.svg" style="width:14px;height:14px;display:block"/></span>GitHub Repo</th><td><a href="https://github.com/eileen819/coin-list" class="url-value">https://github.com/eileen819/coin-list</a></td></tr></tbody></table></header><div class="page-body"><div style="display:contents" dir="auto"><h2 id="28fbe832-d053-8006-bc8f-e1827f3f8b0e" class="">📈 실시간으로 코인 가격을 확인해 보세요!</h2></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-80d6-a1ce-fbd58f17b1d3" class="">
+</p></div><div style="display:contents" dir="ltr"><figure id="28ebe832-d053-80ff-8abd-e309aec2274d" class="image"><a href="https://github.com/eileen819/coin-list/blob/main/public/preview.png?raw=true"><img style="width:624px" src="https://github.com/eileen819/coin-list/blob/main/public/preview.png?raw=true"/></a></figure></div><div style="display:contents" dir="auto"><p id="292be832-d053-8081-9be6-f6bbe0175211" class="">
+</p></div><div style="display:contents" dir="auto"><h1 id="27bbe832-d053-801b-b98e-c7524fccb810" class="">🔈 프로젝트 소개</h1></div><div style="display:contents" dir="auto"><hr id="27bbe832-d053-80ce-ae78-fff3b41a7ec6"/></div><div style="display:contents" dir="auto"><ul id="27bbe832-d053-801d-bd40-da15ee71f373" class="bulleted-list"><li style="list-style-type:disc">Coin List는 <strong>실시간 암호 화폐 정보를 제공</strong>하는 웹 어플리케이션입니다.</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-80c7-990f-f45d4c82a4ea" class="bulleted-list"><li style="list-style-type:disc"><strong>React의 컴포넌트 기반 아키텍처</strong>를 효과적으로 활용하고, TypeScript를 통한 타입 안정성을 확보하는 것에 중점을 두며 개발되었으며, 사용자가 <strong>다양한 암호 화폐의 가격 변동 내역을 쉽게 확인</strong>할 수 있도록 설계되었습니다.</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-8048-8056-f11faaf0d758" class="bulleted-list"><li style="list-style-type:disc"><strong>차트 및 컨버터 기능</strong>을 통해 데이터를 직관적으로 이해할 수 있도록 하였으며, <strong>다크 모드 지원 및 모바일 최적화 UI를 제공</strong>하여 사용자의 편의성도 극대화하였습니다.</li></ul></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-80ff-aed6-e2d7da5814cf" class="">
+</p></div><div style="display:contents" dir="auto"><h1 id="27bbe832-d053-8035-9e08-e8b2f7abe94a" class="">🏗️ 아키텍처</h1></div><div style="display:contents" dir="auto"><hr id="27bbe832-d053-8046-9984-fa45017a1cf9"/></div><div style="display:contents" dir="ltr"><figure id="28ebe832-d053-80ac-84ad-cfd4023dc0f3" class="image"><a href="Coin-List/coinlist-arc.png"><img style="width:576px" src="Coin-List/coinlist-arc.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-800c-adce-ff47c99f4747" class="">
+</p></div><div style="display:contents" dir="auto"><h1 id="27bbe832-d053-8094-97d0-f6cd8df7154a" class="">🔎 주요 기능</h1></div><div style="display:contents" dir="auto"><hr id="27bbe832-d053-8071-b0fb-e8f473abf762"/></div><div style="display:contents" dir="auto"><h3 id="27bbe832-d053-80d6-bf52-e20fe5e7f533" class="">✅ 실시간 코인 가격 및 차트 제공</h3></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-8017-b880-d377205570a4" class="bulleted-list"><li style="list-style-type:disc">현재 암호 화폐의 가격, 순위를 실시간으로 확인 가능</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-8044-82a2-cb8926a0c543" class="bulleted-list"><li style="list-style-type:disc">오늘의 High, Low, Opening, Closing 가격 확인 가능</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-80bd-8b24-d05c4e55a39f" class="bulleted-list"><li style="list-style-type:disc">실시간 암호 화폐 데이터를 페칭하고 캐싱하여 빠른 UX 제공 (TanStack Query 사용)</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-8038-89f7-f635c5bc9bab" class="bulleted-list"><li style="list-style-type:disc">ApexCharts를 사용한 라인 차트 &amp; 캔들 차트 제공 (지난 3주간 데이터 확인 가능)<br/></li></ul></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-8092-bef5-dc08cc3961ca" class="">✅ 코인 ↔ USD 변환 기능 (컨버터)</h3></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-8062-bb02-c520959d8bdf" class="bulleted-list"><li style="list-style-type:disc">암호 화폐 ↔ USD 간 변환 지원</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-807b-a8f3-f6e78cf53718" class="bulleted-list"><li style="list-style-type:disc"><code>useState</code>활용하여 상태 관리하며, 실시간 환율을 반영함<br/></li></ul></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-807f-b53d-da7c50517149" class="">✅ 다크 모드 지원</h3></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-8035-8f63-dc04943fae2c" class="bulleted-list"><li style="list-style-type:disc">사용자의 선호에 따라 다크 모드 / 라이트 모드 전환 가능</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-80f7-8b49-fc4bede09d66" class="bulleted-list"><li style="list-style-type:disc">Recoil을 활용한 글로벌 상태 관리를 적용</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-8060-bb40-f5f395456dd8" class="bulleted-list"><li style="list-style-type:disc">styled-components의 <code>ThemeProvider</code>를 활용해서 스타일링을 적용<br/></li></ul></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-80b3-9043-f6bea588ad22" class="">✅ 모바일 최적화 UI</h3></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-8023-9d62-dc041bdcf9be" class="bulleted-list"><li style="list-style-type:disc">모바일에 최적화된 UI로 어디서든 손쉽게 코인 가격 확인 가능</li></ul></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-80eb-84ab-ed79c5f3dddf" class="">
+</p></div><div style="display:contents" dir="auto"><h1 id="27bbe832-d053-80f2-aeac-f61eebf45386" class="">🗣️ 기술적 의사결정</h1></div><div style="display:contents" dir="auto"><hr id="27bbe832-d053-80d8-9864-e34a93e51136"/></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-806d-8c14-ea09a0015639" class="block-color-yellow_background">Frontend Library</h3></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="28fbe832-d053-80a9-a295-d9801c75f8f2"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-8061-8d03-f304838db019" class="">React</h3></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-80c4-9d86-f5d5c269329e" class="">✔️ 프론트엔드 실무에서 가장 널리 쓰이는 라이브러리</p></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-80d1-9ab6-cee7450954ea" class="">✔️ 컴포넌트 기반의 UI 설계를 통해 반복되는 요소(예: 코인 리스트)를 효율적으로 재사용할 수 있으며, 이는 코드의 유지보수성과 확장성을 증가시킴</p></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-800d-9771-dc212f049290" class="">✔️ React의 Virtual DOM 렌더링 구조 덕분에 암호화폐 시세처럼 데이터가 자주 변하는 UI에도 페이지 전체를 새로고침하지 않고 필요한 부분만 빠르게 업데이트하여 사용자 경험(UX)을 향상시킬 수 있음</p></div></div></figure></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="28fbe832-d053-80dd-a2e3-ce70b2ca4a7b"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-8005-b86f-ff98fcda1c12" class="">React-Router-Dom</h3></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-8002-b5fa-f20c759ebab2" class="">✔️ SPA(싱글 페이지 애플리케이션)에서 페이지의 자연스러운 이동을 구현할 수 있음</p></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-80cb-95c3-d3d5474244a9" class="">✔️ URL 기반의 동적 라우팅 기능을 제공하기 때문에 암호화폐 상세 페이지(<code>/coins/:coinId</code>) 구현에 적합함</p></div></div></figure></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="28fbe832-d053-80fa-a85b-fd3eae38bb88"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-80b2-99a1-e66d13b5846a" class="">ApexChart</h3></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-8024-b0c1-dd6637126107" class="">✔️ ApexChart는 Chart.js나 Recharts와 비교하여 다양한 애니메이션 효과와 풍부한 인터랙티브 기능을 기본적으로 제공</p></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-80f5-9129-d39c6fde8b8f" class="">✔️ 라인 차트, 캔들 차트 등의 다양한 그래프를 제공하며, Chart 컴포넌트의 props를 이용해서 쉽게 그래프를 커스터마이징 할 수 있음 </p></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-80ab-8a65-f29d61946313" class="">✔️ 암호화폐 가격 변동을 차트를 이용해 시각적으로 표현하기에 적합</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-80d0-92e1-c6b40db9a4e3" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-8008-9de2-f77246d0e0a0" class="block-color-yellow_background">Programming Language</h3></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="28fbe832-d053-8012-a98e-f9dd0438b80f"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-8055-a717-f3a358bb632d" class="">TypeScript</h3></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-8062-980a-ef0b0cbbd928" class="">✔️ JavaScript는 초기 개발 속도는 빠르지만, 규모가 커질 수록 유지보수가 어려움</p></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-8082-aa78-e380594775b9" class="">✔️ 반면, TypeScript의 정적 타입 검사를 통해 오류를 줄이고, 코드의 유지 보수성을 향상시킬 수 있음</p></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-807a-8e01-c2b9d9d3d1b5" class="">✔️ 암호화폐에 대한 다양한 정보를 제공해야 하는 해당 프로젝트의 특성상, 타입 정의를 통한 코드의 안정성 및 가독성을 높일 수 있는 TypeScript가 적합함</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-8065-b0a4-c93845c13e36" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-806d-897a-f36f4328776c" class="block-color-yellow_background">State Management</h3></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="28fbe832-d053-8084-928e-c5d02155d507"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-808f-b47d-d0a8b1ec8581" class="">Recoil</h3></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-8054-ae2f-f97887573aa6" class="">✔️ 전역 상태 관리가 쉽고 간단하며, 상태를 Atom 단위로 분리하여 관리하기 때문에 불필요한 리렌더링을 최소화할 수 있음</p></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-8071-880e-ce1e1da1aa3f" class="">✔️ <code>localStorage</code>와 연동하여 사용자의 다크모드 설정을 유지하도록 구현이 가능함</p></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-80a3-bb93-fb30db8ec8e5" class="">✔️ 해당 프로젝트에서는 상태 수가 많지 않고 복잡한 비동기 로직이 없기 때문에, Redux보다 Recoil이 더 단순하고 직관적인 구조로 적합함</p></div></div></figure></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="28fbe832-d053-80b3-b304-fe0fcad7c22f"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-80f4-8e96-cde93ef4422f" class="">TanStack Query</h3></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-8091-917f-f83679b47b9d" class="">✔️ React 기반 비동기 데이터 요청 및 캐싱 도구로, 비동기 서버 상태(Asynchronous Server State)를 효율적으로 관리할 수 있음</p></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-8021-bf5b-eb7bdb7764d9" class="">✔️ <code>useQuery</code>를 사용하여 비동기 데이터를 요청하고, 요청에 대한 로딩 상태 및 에러 처리뿐만 아니라, 캐싱, 자동 갱신과 같은 강력한 기능을 제공함</p></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-803a-be49-f1e47ec16153" class="">✔️ 암호화폐 시세 데이터의 실시간 요청을 효율적으로 관리하고, API 호출 횟수를 최적화하여 성능을 향상시킬 수 있음</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-8098-af40-d6a75870d56c" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-808a-a2d9-efcfce158df7" class="block-color-yellow_background">Database</h3></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="28fbe832-d053-806c-86fe-c17bc6bc9dc0"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-805e-a65d-f28adf8d69e2" class="">LocalStorage</h3></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-8011-9fbe-ee0bc93c7547" class="">✔️ 브라우저에서 제공하는 간단한 데이터 저장 방식으로, 백엔드 서버 없이도 새로고침 후 사용자 설정을 복원할 수 있어 UX 측면에서 효율적</p></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-80e8-9cde-d21881718cfc" class="">✔️ 데이터 구조가 간단하고, 복잡한 데이터베이스 설정 없이 사용이 가능하기 때문에 해당 프로젝트의 규모에 적합함</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-8069-898e-d092b81e8d52" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-808f-9557-e9ba418db702" class="block-color-yellow_background">Styling</h3></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="28fbe832-d053-80b6-a2ff-c6d65b62348c"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-80ae-9018-f66946d522a7" class="">styled-components</h3></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-80c9-93b8-c3b059e5837c" class="">✔️ CSS-in-JS 방식을 적용하여 컴포넌트 단위 스타일 관리가 가능하며, 이는 스타일의 재사용성과 관리가 용이하다는 장점이 있음</p></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-80cf-b002-c1eae79d7d15" class="">✔️ <code>ThemeProvider</code>를 활용하여 다크 모드와 같은 전역 테마 시스템을 적용할 수 있음</p></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-80be-8ddc-fa7935e83650" class="">✔️ <code>createGlobalStyle</code> 을 사용해 글로벌 스타일을 쉽게 적용하여 사용이 가능</p></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-8044-bf66-f5856925f89a" class="">✔️ Tailwind CSS, Emotion 등 다양한 스타일링 도구가 존재하지만, 해당 프로젝트에서는 컴포넌트별 스타일을 모듈화할 수 있고, 전역 테마 구성이 용이하여 다크모드 및 상세 UI 구현에 적합함</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-80ad-affb-f1c3b3713dc0" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-800c-804f-fdd2546e4442" class="block-color-yellow_background">SEO &amp; Meta Data</h3></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="28fbe832-d053-802a-a465-e7b6d2a87806"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-80cd-b569-d12c4b0a373e" class="">React-Helmet-Async</h3></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-8072-858c-c75637320dd0" class="">✔️ 암호화폐 상세 페이지에서 동적으로 페이지 타이틀 및 메타 정보를 설정하기 위해 사용함</p></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-80c2-86b1-dedd8adcfa54" class="">✔️ SEO 최적화는 물론, 북마크/공유 시에도 적절한 메타 정보가 노출되도록 처리 가능</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-8028-b9c9-fc2c1f0eaf84" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-80f3-b44c-d86ca0272d71" class="block-color-yellow_background">API Integration</h3></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="28fbe832-d053-805d-818b-e6b0ae0aa003"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-8089-ba8b-e198f8fc42f4" class="">coinpaprica API</h3></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-80a4-afa8-c71b48372139" class="">✔️ 실시간 암호 화폐 데이터 제공이 가능하면서도, 별도 API Key 없이 사용 가능한 무료 API</p></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-8020-ae03-cec499f5175a" class="">✔️ 복잡한 인증 구조가 없어 초·중급 프로젝트에서 빠르게 적용 가능</p></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-80a5-8e25-f215f7011c8d" class="">✔️ 암호 화폐에 대한 다양한 데이터 제공(예: 현재가, 시가, 종가..)으로 코인 리스트 / 상세 페이지 / 차트 구현을 가능하게 함</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-8046-8e3e-eb4a440bf8a0" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-80f9-962f-e04263d7110c" class="block-color-yellow_background">Deployment</h3></div><div style="display:contents" dir="ltr"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="28fbe832-d053-8057-92dc-cf2316c729f2"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-80ef-8d44-ce1b1440ef81" class="">GitHub Pages</h3></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-8086-891f-f847e4188163" class="">✔️ Vercel, Netlify 등 자동화 배포 플랫폼도 있지만, GitHub Pages는 GitHub와 연동하여 간편하게 무료로 배포 가능</p></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-80f7-99d3-ca41462c7a52" class="">✔️ <code>gh-pages</code> 패키지를 통해 정적 파일을 GitHub Pages에 배포</p></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-8083-b276-f7b834e648d7" class="">✔️ 프로젝트 수정 시 매번 수동으로 재배포가 필요하지만, React 기반 정적 사이트를 무료로 배포하기에는 가장 간편한 방법으로 판단됨</p></div></div></figure></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-805f-bac3-dc69d5a2182c" class="">
+</p></div><div style="display:contents" dir="auto"><h1 id="27bbe832-d053-80cb-b91f-df0cbdc698d7" class="">🛠️ 트러블 슈팅</h1></div><div style="display:contents" dir="auto"><hr id="27bbe832-d053-8010-a33e-cb0b6fbb0a5f"/></div><div style="display:contents" dir="auto"><h2 id="28fbe832-d053-8037-aaa7-e4602510245e" class="">1.  API 요청 실패 시 에러 핸들링</h2></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-8047-8353-ca7376e20257" class="">❗ 문제 상황</h3></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-80ec-968c-d4a31c16866d" class="bulleted-list"><li style="list-style-type:disc">API 요청에 대한 오류가 발생했을 때를 대비하여 데이터 페치 함수 내부에서 <code>try-catch</code>구문으로 에러 핸들링을 하고자 하였음</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-80a0-9b4d-d0f9d3d5855b" class="bulleted-list"><li style="list-style-type:disc">그러나 데이터 페치 함수 내부에서 <code>try-catch</code>로 에러 핸들링을 할 경우, API 요청에 오류가 발생하면 <code>useQuery</code>로 부터 <code>isError</code>, <code>error</code> 값은 제대로 반환되는 것처럼 보였지만, <code>queryFn</code> 옵션에서 타입 에러(오버로드 에러)가 발생하는 문제를 발견함</li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-804d-b371-f6bb5c4e2508" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-804f-9c24-e238075684b0" class="">🔍 원인 분석</h3></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-80ef-89cc-f41003e1c1d2" class="bulleted-list"><li style="list-style-type:disc">TanStack Query를 사용할 때, 데이터 페치 함수 내부의 <code>catch</code> 블록에서 에러를 <code>throw</code>하거나 <code>Promise.reject</code>하지 않는다면 타입 시스템에서는 <code>Promise&lt;void&gt;</code> 또는 <code>Promise&lt;undefined&gt;</code>로 추론함</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-80b1-9c32-ef83052eeec9" class="bulleted-list"><li style="list-style-type:disc">이는 <code>useQuery</code>가 기대하는 <code>Promise&lt;T&gt;</code> 타입과 일치하지 않게되고 이로 인하여 오버로드 에러가 발생</li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-801a-8d06-c7e061ea5667" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-80ac-a13f-d6eb658d5d6a" class="">🛠 해결 / 대응 방법</h3></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-805d-967e-c2b1b964f8a4" class="bulleted-list"><li style="list-style-type:disc">데이터 페치 함수 내부에서 <code>try-catch</code>로 에러 핸들링을 하는 대신, <code>useQuery</code>의 <code>onError</code> 옵션을 사용하여 컴포넌트 레벨에서 에러를 처리하는 방법을 고려했으나, TanStack Query v5부터는 해당 옵션이 제거되어 전역적인 에러 처리에 중점을 두도록 변경되었음을 확인</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-8074-9904-d807601c000d" class="bulleted-list"><li style="list-style-type:disc"><code>QueryClient</code> 단계에서 전역으로 에러를 처리하기로 결정<div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="28fbe832-d053-8088-a543-c1b0b908fe56" class="code code-wrap"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">// QueryClient 설정
+const queryClient = new QueryClient({
+  queryCache: new QueryCache({
+    onError: (error) =&gt; {
+      toast.error(`데이터 요청 중 오류 발생: ${error.message}`);
+    },
+  }),
+  defaultOptions: {
+    queries: {
+      retry: 1,
+    },
+  },
+});</code></pre></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-80e2-be6d-c9689c389eb5" class="bulleted-list"><li style="list-style-type:circle"><code>QueryClient</code>에 <code>queryCache</code>를 설정하고, <code>onError</code> 콜백을 정의하여 전역적으로 에러를 처리</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-80f9-9446-d6f653253767" class="bulleted-list"><li style="list-style-type:circle">모든 <code>useQuery</code> 훅에서 에러가 발생할 경우, 토스트 메시지를 띄워 에러를 확인</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-803a-906b-cafbe697aee9" class="bulleted-list"><li style="list-style-type:circle"><code>defaultOptions</code>에서 API 요청 실패 시에 요청 재시도 횟수를 1회로 정의하여 의미없는 요청이 반복되지 않도록 함</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-80b2-86f4-f0af4de76fa4" class="bulleted-list"><li style="list-style-type:disc"><code>useQuery</code>가 반환하는 <code>isError</code>, <code>error</code> 값을 활용하여 API 요청 실패시에 사용자가 빈 화면만 계속 보지 않도록 상태에 따른 조건부 렌더링이 이뤄지도록 함<div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="28fbe832-d053-8018-a0d4-fbf8a4df26e8" class="code code-wrap"><code class="language-TypeScript" style="white-space:pre-wrap;word-break:break-all">// loading, error 상태에 따른 조건부 렌더링
+const { isLoading, isError, data, error } = useQuery(...);
+
+return 
+	...
+	{isError &amp;&amp; (
+		&lt;ErrorMessage&gt;
+			❗️ We couldn&#x27;t load the data. Please try again later.
+		&lt;/ErrorMessage&gt;
+	)}
+	{isLoading &amp;&amp; !isError &amp;&amp; &lt;Loader&gt;Loading...&lt;/Loader&gt;}
+	{!isLoading &amp;&amp; !isError &amp;&amp; &lt;&gt;...&lt;/&gt; }
+	...</code></pre></div></li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-80da-b727-e32216054c01" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-807e-ae07-e150ff28a65d" class="">✅ 결과 및 회고</h3></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-80f4-87ff-f3bc826e07dd" class="bulleted-list"><li style="list-style-type:disc">TanStack Query를 사용할 때, <code>QueryClient</code> 단계에서 전역으로 에러를 처리하여 코드의 중복을 최소화하고 로깅 및 toast 처리를 할 수 있게 됨</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-802f-bd32-fbf7ba1989a2" class="bulleted-list"><li style="list-style-type:disc">컴포넌트 레벨에서 <code>isError</code>를 이용한 조건부 렌더링 처리를 통해 일관성있고 유지보수 쉬운 구조를 구현할 수 있었음</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-8027-9a40-f8d237d3c6c5" class="bulleted-list"><li style="list-style-type:disc"><code>try-catch</code>를 이용한 에러 핸들링 외에도 TanStack Query 라이브러리에서 제공하는 기능을 이용해서 다양한 에러 핸들링 방식을 적용할 수 있음을 알게 됨 </li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-80a0-98af-d09f9b148917" class="bulleted-list"><li style="list-style-type:disc">타입 불일치로 인한 오버로드 에러의 원인을 파악하고, TanStack Query의 타입시스템에 대해서 구체적으로 학습할 수 있는 계기가 되었음</li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-80d9-81e3-e8d390415269" class="">
+</p></div><div style="display:contents" dir="auto"><hr id="292be832-d053-806d-a715-cd0a5e68d440"/></div><div style="display:contents" dir="auto"><h2 id="28fbe832-d053-8057-8ce9-ca46fb0874fe" class="">2.  <code>gh-pages</code> 404 에러</h2></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-801f-ab6c-e2cf06ca03f4" class="">❗ 문제 상황</h3></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-8002-816a-db59e4b225e6" class="bulleted-list"><li style="list-style-type:disc"><code>gh-pages</code> 패키지를 이용해 프로젝트를 배포한 후에, 루트 디렉토리(<code>”/”</code>)가 아닌 서브 디렉토리(<code>”coin-list/btc-bitcoin/price”</code>)에 직접 접속했을 때, 404 에러가 발생함</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-80a0-b1cf-ec568f3ded76" class="bulleted-list"><li style="list-style-type:disc">사용자는 올바른 페이지를 볼 수 없으며 이는 서비스의 신뢰성을 떨어트리고 사용자 경험을 저하시키는 문제임을 확인함</li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-80b0-8c26-ff15c427cb91" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-800e-9e91-ebe17a27e8de" class="">🔍 원인 분석</h3></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-80a0-b6e7-d0da2a8eac5e" class="bulleted-list"><li style="list-style-type:disc"><strong>SPA(Single Page Application)의 라우팅 vs 웹 서버의 정적 파일 처리 방식의 차이</strong><div style="display:contents" dir="auto"><ul id="28fbe832-d053-809f-9111-cbcbd4a937a9" class="bulleted-list"><li style="list-style-type:circle">React와 같은 SPA는 초기 로드 시 <code>index.html</code> 파일 하나만 불러오고, <code>/coin-list/:coinId</code>와 같은 다른 경로의 페이지 이동은 JavaScript의 <strong>클라이언트 사이드 라우팅</strong>으로 처리함</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-8014-ae68-f0d727436728" class="bulleted-list"><li style="list-style-type:circle">하지만 GitHub Pages는 정적 서버이기 때문에, 브라우저가 <code>/coin-list/btc-bitcoin</code>와 같은 경로로 직접 요청 시에 해당 경로에 HTML파일이 없으면 <code>404</code>에러를 반환함</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-80e9-81df-d28dbee2a317" class="bulleted-list"><li style="list-style-type:disc">SPA 라우팅 방식은 모든 경로를 <code>index.html</code>로 돌린 뒤 클라이언트 사이드에서 라우팅해야 하는데, GitHub Pages는 그런 리다이렉트를 자동으로 해주지 않기 때문에 특정 경로로 직접 접근하거나 새로고침할 때 이러한 문제가 발생함을 확인</li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-8026-8172-c835bf9da052" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-80ba-aa24-e491c983e33b" class="">🛠 해결 / 대응 방법</h3></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-805c-a025-c0f50adf586a" class="bulleted-list"><li style="list-style-type:disc"><code>/coin-list/:coinId</code> 같은 존재하지 않는 모든 경로에 대해 <strong>무조건 </strong><code><strong>index.html</strong></code><strong> 파일을 반환</strong>하도록 설정해서, JavaScript가 URL을 분석하여 적절한 컴포넌트를 렌더링하도록 해야 함</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-8066-bd34-f1ef73634ddb" class="bulleted-list"><li style="list-style-type:disc"><strong>GitHub Pages 리디렉션 스크립트 활용</strong><div style="display:contents" dir="auto"><ul id="28fbe832-d053-80be-8b09-fa0faddadd4f" class="bulleted-list"><li style="list-style-type:circle">이 문제를 해결하기 위해, GitHub Pages에서 제공하는 MIT 오픈 소스 스크립트를 <code>public</code> 폴더 내 <code><strong>404.html</strong></code> 파일로 추가</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-808e-aa1e-c27a804b3300" class="bulleted-list"><li style="list-style-type:circle">이 스크립트는 존재하지 않는 모든 경로 요청을 <code>index.html</code>로 리디렉션하는 역할을 하기때문에 JavaScript가 다시 로드되어 라우팅을 정상적으로 처리하게 됨</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-8025-8d8c-f9951722b378" class="bulleted-list"><li style="list-style-type:disc"><strong>URL 변환 로직 적용</strong><div style="display:contents" dir="auto"><ul id="28fbe832-d053-8074-bd0d-fab7d45c815a" class="bulleted-list"><li style="list-style-type:circle"><code>index.html</code>에도 스크립트를 추가하여 리디렉션된 URL의 쿼리를 분석하고, <code>window.history.replaceState()</code>를 사용해 원래의 URL로 복원하도록 처리함</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-804b-b779-cd910b7cf468" class="bulleted-list"><li style="list-style-type:disc"><code><strong>basename</strong></code><strong> 설정</strong><div style="display:contents" dir="auto"><ul id="28fbe832-d053-80c1-8a6c-e43eba185ae8" class="bulleted-list"><li style="list-style-type:circle"><code>package.json</code>의 <code>homepage</code> 속성을 추가하고 <code>createBrowserRouter</code>의 두번째 인수로 <code>{ basename: process.env.PUBLIC_URL }</code><strong> </strong>를 넣음</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-80f5-913d-f228e0aef760" class="bulleted-list"><li style="list-style-type:circle">위 방법을 통해 라우터가 프로젝트의 배포 경로(<code>coin-list</code>)를 기준으로 올바르게 동작하도록 만듦</li></ul></div></li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-806d-b416-e00f9deb36ae" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="28fbe832-d053-8030-a27b-d6f265465b34" class="">✅ 결과 및 회고</h3></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-80f1-9bea-d91711703241" class="bulleted-list"><li style="list-style-type:disc">SPA의 라우팅 문제를 해결하여, 사용자가 어떤 경로로 직접 접근하더라도 <code>404</code> 에러 없이 정상적으로 페이지를 볼 수 있게 함</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-80da-982b-d1ead1f2b6ae" class="bulleted-list"><li style="list-style-type:disc">이 경험을 통해 SPA의 클라이언트 사이드 라우팅과 정적 파일 서버의 동작 방식을 더 깊이 이해하게 됨</li></ul></div><div style="display:contents" dir="auto"><ul id="28fbe832-d053-800b-9f41-db455a54a5d0" class="bulleted-list"><li style="list-style-type:disc">또한, 특정 배포 환경의 제약을 극복하기 위해 외부 리소스를 활용하고 애플리케이션 설정을 변경하는 방법을 학습할 수 있었음</li></ul></div><div style="display:contents" dir="auto"><p id="292be832-d053-8061-b361-f238549ec4ff" class="">
+</p></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-8052-ae2a-e1ce917201b3" class=""><strong>📌 참고 링크:</strong><div class="indented"><div style="display:contents" dir="auto"><p id="28fbe832-d053-80de-8f08-e0effa55d3b3" class="">🔗 <a href="https://velog.io/@eunji9128/gh-pages-%EB%B0%B0%ED%8F%AC-%EC%8B%9C-URL-%EC%83%88%EB%A1%9C%EA%B3%A0%EC%B9%A8%EC%A7%81%EC%A0%91-%EC%9E%85%EB%A0%A5-%EB%AC%B8%EC%A0%9C">https://velog.io/@eunji9128/gh-pages-배포-시-URL-새로고침직접-입력-문제</a></p></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-80be-9319-cbe39cf4ad62" class="">🔗 <a href="https://velog.io/@keynene/Github-Github-Pages%EA%B9%83%ED%97%88%EB%B8%8C-%ED%8E%98%EC%9D%B4%EC%A7%80%EB%A1%9C-%EB%B0%B0%ED%8F%AC%ED%95%98%EA%B8%B0gh-pages">https://velog.io/@keynene/Github-Github-Pages깃허브-페이지로-배포하기gh-pages</a></p></div></div></p></div><div style="display:contents" dir="auto"><p id="28fbe832-d053-8038-be64-f6cd40334f6d" class="">
+</p></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

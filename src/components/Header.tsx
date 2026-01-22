@@ -9,11 +9,21 @@ export default function Header() {
   const [mounted, setMounted] = useState(false);
   const router = useRouter();
 
+  const handleHome = () => {
+    if (router.pathname === "/") {
+      window.history.replaceState(null, "", "/");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      router.push("/");
+    }
+  };
+
   const handleSectionNav = (id: string) => {
     if (router.pathname !== "/") {
       router.push(`/#${id}`);
       return;
     }
+
     const el = document.getElementById(id);
     if (!el) return;
     el.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -34,26 +44,32 @@ export default function Header() {
       <div className="px-4 font-bold text-3xl">Hyeonju Hwang</div>
       <div className="hidden sm:flex gap-4">
         <button
+          onClick={handleHome}
+          className="font-medium cursor-pointer hover:text-gray-500 transition duration-300 ease-in-out"
+        >
+          Home
+        </button>
+        <button
           onClick={() => handleSectionNav("about")}
-          className="cursor-pointer hover:text-gray-500 transition duration-300 ease-in-out"
+          className="font-medium cursor-pointer hover:text-gray-500 transition duration-300 ease-in-out"
         >
           About
         </button>
         <button
           onClick={() => handleSectionNav("skills")}
-          className="cursor-pointer hover:text-gray-500 transition duration-300 ease-in-out"
+          className="font-medium cursor-pointer hover:text-gray-500 transition duration-300 ease-in-out"
         >
           Skills
         </button>
         <button
           onClick={() => handleSectionNav("projects")}
-          className="cursor-pointer hover:text-gray-500 transition duration-300 ease-in-out"
+          className="font-medium cursor-pointer hover:text-gray-500 transition duration-300 ease-in-out"
         >
           Projects
         </button>
         <button
           onClick={() => handleSectionNav("contact")}
-          className="cursor-pointer hover:text-gray-500 transition duration-300 ease-in-out"
+          className="font-medium cursor-pointer hover:text-gray-500 transition duration-300 ease-in-out"
         >
           Contact
         </button>
