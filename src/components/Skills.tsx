@@ -30,9 +30,9 @@ const images = [
 
 export default function Skills() {
   return (
-    <section id="skills" className="scroll-mt-16 border-t border-gray-400">
-      <h2 className="text-3xl font-semibold mt-4">기술</h2>
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-4">
+    <section id="skills" className="scroll-mt-16 border-t border-gray-300 mb-6">
+      <h2 className="text-3xl font-semibold my-4">기술</h2>
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
         {images.map((i) => (
           <div
             key={i.name}

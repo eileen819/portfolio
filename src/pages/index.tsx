@@ -1,4 +1,5 @@
 import About from "@/components/About";
+import Projects from "@/components/Projects";
 import Skills from "@/components/Skills";
 
 export default function Home() {
@@ -6,11 +7,12 @@ export default function Home() {
     <div>
       <About />
       <Skills />
-      <section id="projects" className="bg-yellow-300 h-[300] scroll-mt-16">
-        Projects
-      </section>
-      <section id="contact" className="bg-gray-300 h-[300] scroll-mt-16">
-        Contact
+      <Projects />
+      <section
+        id="contact"
+        className="h-[300] border-t scroll-mt-16  border-gray-300 mb-6"
+      >
+        <h2 className="text-3xl font-semibold my-4">Contact</h2>
       </section>
     </div>
   );
