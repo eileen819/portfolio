@@ -1,9 +1,9 @@
+import About from "@/components/About";
+
 export default function Home() {
   return (
     <div>
-      <section id="about" className="bg-green-300 h-[300] scroll-mt-16">
-        About
-      </section>
+      <About />
       <section id="skills" className="bg-pink-300 h-[300] scroll-mt-16">
         Skills
       </section>

@@ -20,13 +20,13 @@ export default function Header() {
   }, []);
   if (!mounted) return null;
 
-  const currentTheme = theme === "system" ? resolvedTheme ?? "light" : theme;
+  const currentTheme = theme === "system" ? (resolvedTheme ?? "light") : theme;
   const isDark = currentTheme === "dark";
 
   return (
-    <nav className="max-w-5xl mx-auto h-full flex items-center gap-4">
+    <nav className="max-w-5xl mx-auto h-full flex justify-between items-center">
       <div className="px-4 font-bold text-3xl">Hyeonju Hwang</div>
-      <div className="hidden sm:flex-1 sm:flex gap-4">
+      <div className="hidden sm:flex gap-4">
         <button
           onClick={() => handleSectionNav("about")}
           className="cursor-pointer hover:text-gray-500 transition duration-300 ease-in-out"
@@ -51,42 +51,42 @@ export default function Header() {
         >
           Contact
         </button>
+        <div className="hidden sm:flex sm:gap-4 p-4">
+          <button
+            className="flex items-center justify-center cursor-pointer transition duration-300 ease-in-out"
+            onClick={() => setTheme(isDark ? "light" : "dark")}
+          >
+            <AnimatePresence mode="wait" initial={false}>
+              {isDark ? (
+                <motion.span
+                  key="moon"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <Moon />
+                </motion.span>
+              ) : (
+                <motion.span
+                  key="sun"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <Sun color="#fbc531" />
+                </motion.span>
+              )}
+            </AnimatePresence>
+          </button>
+          {theme === "system" && <span>🖥️</span>}
+        </div>
       </div>
       <div className="ml-auto pr-4 sm:hidden">
         <button className="flex items-center justify-center cursor-pointer">
           <Menu />
         </button>
-      </div>
-      <div className="hidden sm:flex sm:gap-4 p-4">
-        <button
-          className="flex items-center justify-center cursor-pointer transition duration-300 ease-in-out"
-          onClick={() => setTheme(isDark ? "light" : "dark")}
-        >
-          <AnimatePresence mode="wait" initial={false}>
-            {isDark ? (
-              <motion.span
-                key="moon"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.3 }}
-              >
-                <Moon />
-              </motion.span>
-            ) : (
-              <motion.span
-                key="sun"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.3 }}
-              >
-                <Sun color="#fbc531" />
-              </motion.span>
-            )}
-          </AnimatePresence>
-        </button>
-        {theme === "system" && <span>🖥️</span>}
       </div>
     </nav>
   );
