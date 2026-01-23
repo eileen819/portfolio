@@ -74,7 +74,7 @@ export default function Projects() {
       className="scroll-mt-16 border-t border-gray-300 mb-6"
     >
       <h2 className="text-3xl font-semibold my-4">프로젝트</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {projects.map((p) => (
           <article
             key={p.id}
