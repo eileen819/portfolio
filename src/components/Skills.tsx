@@ -36,7 +36,7 @@ export default function Skills() {
         {images.map((i) => (
           <div
             key={i.name}
-            className="bg-gray-100 rounded p-4 flex flex-col justify-center items-center shadow-md"
+            className="bg-gray-100 dark:bg-gray-800 rounded p-4 flex flex-col justify-center items-center shadow-md"
           >
             <Image
               src={i.src}

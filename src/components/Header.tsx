@@ -87,7 +87,7 @@ export default function Header() {
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <Moon />
+                  <Moon color="#fbc531" />
                 </motion.span>
               ) : (
                 <motion.span

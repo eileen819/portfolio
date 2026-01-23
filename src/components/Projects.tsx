@@ -81,7 +81,7 @@ export default function Projects() {
             onClick={() => {
               router.push(p.url);
             }}
-            className="bg-white h-full rounded-md border border-gray-200 shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer overflow-hidden"
+            className="bg-white dark:bg-gray-800 h-full rounded-md border border-gray-200 dark:border-gray-700 shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer overflow-hidden"
           >
             <div className="flex justify-center items-start h-50 border-b border-gray-200 overflow-hidden">
               <Image src={p.image} alt="" width={500} height={500} />
@@ -93,7 +93,7 @@ export default function Projects() {
                 {p.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="text-xs text-gray-700 rounded-lg bg-amber-200 px-2 py-1"
+                    className="text-xs text-gray-700 rounded-lg bg-gray-100 border border-gray-200 px-2 py-1"
                   >
                     {tag}
                   </span>
@@ -103,7 +103,7 @@ export default function Projects() {
                 <Link
                   href={p.links.gitHub}
                   target="_blank"
-                  className="text-center text-sm text-gray-100 rounded-full bg-gray-900 px-2 py-1 hover:bg-gray-500 transition-colors duration-300 ease-in-out"
+                  className="text-center text-sm text-gray-100 rounded-full bg-gray-900 dark:bg-gray-600 px-2 py-1 hover:bg-gray-500 dark:hover:bg-black transition-colors duration-300 ease-in-out"
                   onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
                     e.stopPropagation();
                   }}
@@ -113,7 +113,7 @@ export default function Projects() {
                 <Link
                   href={p.links.demo}
                   target="_blank"
-                  className="text-sm text-gray-50 rounded-full bg-blue-500 px-2 py-1 hover:bg-blue-400 transition-colors duration-300 ease-in-out"
+                  className="text-sm text-gray-50 rounded-full bg-blue-500 px-2 py-1 hover:bg-blue-400 dark:hover:bg-blue-700 transition-colors duration-300 ease-in-out"
                   onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
                     e.stopPropagation();
                   }}
