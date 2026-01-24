@@ -1,7 +1,8 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import MobileMenu from "./MobileMenu";
+import { useRouter } from "next/router";
 
 interface ILayout {
   children: ReactNode;
@@ -9,6 +10,7 @@ interface ILayout {
 
 export default function Layout({ children }: ILayout) {
   const [open, setOpen] = useState(false);
+
   return (
     <div className="dark:text-gray-100 min-h-screen">
       <Header handleMobile={() => setOpen(true)} />

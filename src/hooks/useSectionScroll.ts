@@ -21,7 +21,7 @@ export default function useSectionScroll() {
     const el = document.getElementById(id);
     if (!el) return;
     el.scrollIntoView({ behavior: "smooth", block: "start" });
-    window.history.pushState(null, "", `#${id}`);
+    window.history.pushState(null, "", `/#${id}`);
   };
 
   return { router, handleHome, handleSectionNav };
