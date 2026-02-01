@@ -81,11 +81,21 @@ export default function Projects() {
             onClick={() => {
               router.push(p.url);
             }}
-            className="bg-white dark:bg-gray-800 h-full rounded-md border border-gray-200 dark:border-gray-700 shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer overflow-hidden"
+            className="group bg-white dark:bg-gray-800 h-full rounded-md border border-gray-200 dark:border-gray-700 shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer overflow-hidden"
           >
-            <div className="flex justify-center items-start h-50 border-b border-gray-200 overflow-hidden">
-              <Image src={p.image} alt="" width={500} height={500} />
+            <div className="relative flex justify-center items-start h-50 border-b border-gray-200 overflow-hidden">
+              <Image
+                src={p.image}
+                alt=""
+                width={500}
+                height={500}
+                className="group-hover:scale-110 transition-transform duration-300"
+              />
+              <div className="absolute inset-0 flex justify-center items-center bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <p className="text-gray-200 font-medium">상세보기</p>
+              </div>
             </div>
+
             <div className="p-4">
               <h4 className="text-lg font-semibold mb-1">{p.title}</h4>
               <p className="text-sm mb-4">{p.description}</p>
