@@ -19,10 +19,13 @@ export default function About() {
         <h1 className="text-4xl font-bold md:text-5xl mb-2">황현주</h1>
         <span className="text-xl md:text-xl mb-4">프론트엔드 개발자</span>
         <p className="mb-6">
-          사용자에게 자연스럽고 직관적인 경험을 제공하기 위해 데이터 흐름과
-          인터랙션을 세밀하게 설계합니다. React, Next.js, Typescript를 활용해
-          실무 수준의 서비스를 직접 구현하며 구조적 사고를 익혀왔습니다. 기능의
-          완성도와 사용자의 편의성을 함께 고려하는 프론트엔드 개발을 지향합니다.
+          사용자에게 자연스럽고 직관적인 경험을 제공하기 위해 <br />
+          데이터 흐름과 인터랙션을 세밀하게 설계합니다. <br />
+          React, Next.js, Typescript를 활용해
+          <br />
+          실무 수준의 서비스를 직접 구현하며 구조적 사고를 익혀왔습니다. <br />
+          기능의 완성도와 사용자의 편의성을 함께 고려하는 프론트엔드 개발을
+          지향합니다.
         </p>
       </div>
     </section>

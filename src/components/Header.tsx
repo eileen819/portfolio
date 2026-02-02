@@ -3,8 +3,6 @@ import useSectionScroll from "@/hooks/useSectionScroll";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 
 export default function Header({ handleMobile }: { handleMobile: () => void }) {
   const { theme, setTheme, resolvedTheme } = useTheme();

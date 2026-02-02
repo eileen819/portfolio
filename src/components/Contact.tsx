@@ -5,7 +5,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="border-t scroll-mt-16  border-gray-300 mb-6"
+      className="border-t scroll-mt-16  border-gray-300 mb-14"
     >
       <h2 className="text-3xl font-semibold my-4">Contact</h2>
       <div className="mx-6 space-y-2">
